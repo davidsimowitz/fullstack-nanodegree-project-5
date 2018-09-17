@@ -32,6 +32,7 @@ $ cd fullstack-nanodegree-project-5
   + Verify the following files/folders are present before continuing:
     * css
     * index.html
+    * js
     * README.md
 
 * Connect to the frontend:
