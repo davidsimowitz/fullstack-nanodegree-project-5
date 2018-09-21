@@ -38,7 +38,7 @@ body {
                -1px 1px 0 hsl(261, 50%, 79%),
                -1px -1px 0 hsl(261, 50%, 79%);
   top: 80px;
-  transform: scale(.8, 1);
+  transform: rotate(0.5turn) scale(.8, 1) translate(0, -10px);
   z-index: 1;
 }
 

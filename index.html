@@ -24,11 +24,13 @@
       function openMenu() {
         mapElem.style.left = "300px";
         menuButton.style.left = "325px";
+        menuButton.style.transform = "rotate(0.5turn) scale(.8, 1) translate(0, -10px)";
       }
 
       function closeMenu() {
         mapElem.style.left = "0px";
         menuButton.style.left = "25px";
+        menuButton.style.transform = "scale(.8, 1)";
       }
 
       window.onclick = function(event) {
