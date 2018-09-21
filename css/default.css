@@ -16,6 +16,27 @@ body {
   height: 100%;
 }
 
-#map {
+#locations {
   height: 100%;
+}
+
+#map {
+  bottom: 0;
+  height: 100%;
+  left: 300px;
+  position: absolute;
+  right: 0;
+}
+
+#menu-button {
+  color: hsla(261, 94%, 50%, .7);
+  font-size: 68px;
+  left: 325px;
+  position: absolute;
+  top: 80px;
+  z-index: 1;
+}
+
+#menu-button:hover {
+  color: hsla(261, 94%, 50%, 1);
 }

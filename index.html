@@ -8,10 +8,41 @@
   </head>
 
   <body>
+    <div id="locations"></div>
     <div id="map"></div>
+    <div id="menu-button">&#9654;</div>
     <script src="js/map.js" async defer></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4xfBJQ4i5RPpco8sYGsQyX0_Y1dr-Des&callback=initMap"
     async defer></script>
+    <script>
+      var mapElem = document.getElementById("map");
+      var menuElem = document.getElementById("locations");
+      var menuButton = document.getElementById("menu-button");
+
+      var open = true;
+
+      function openMenu() {
+        mapElem.style.left = "300px";
+        menuButton.style.left = "325px";
+      }
+
+      function closeMenu() {
+        mapElem.style.left = "0px";
+        menuButton.style.left = "25px";
+      }
+
+      window.onclick = function(event) {
+        if (event.target == menuButton) {
+          if(open) {
+            closeMenu();
+            open = false;
+          } else {
+            openMenu();
+            open = true;
+          }
+        }
+      }
+    </script>
   </body>
 
 </html>
