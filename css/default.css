@@ -23,25 +23,40 @@ body {
 #map {
   bottom: 0;
   height: 100%;
-  left: 300px;
   position: absolute;
   right: 0;
+}
+
+.fullscreen {
+  left: 0;
+}
+
+.windowed {
+  left: 300px;
 }
 
 #menu-button {
   color: hsla(261, 94%, 50%, .7);
   font-size: 68px;
-  left: 325px;
   position: absolute;
   text-shadow: 1px 1px 0 hsl(261, 50%, 79%),
                1px -1px 0 hsl(261, 50%, 79%),
                -1px 1px 0 hsl(261, 50%, 79%),
                -1px -1px 0 hsl(261, 50%, 79%);
   top: 80px;
-  transform: rotate(0.5turn) scale(.8, 1) translate(0, -10px);
   z-index: 1;
 }
 
 #menu-button:hover {
   color: hsla(261, 94%, 50%, 1);
+}
+
+.opened {
+  left: 325px;
+  transform: rotate(0.5turn) scale(.8, 1) translate(0, -10px);
+}
+
+.closed {
+  left: 25px;
+  transform: scale(.8, 1);
 }
