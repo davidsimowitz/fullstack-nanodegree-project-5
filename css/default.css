@@ -21,8 +21,6 @@ body {
 }
 
 #map {
-  bottom: 0;
-  height: 100%;
   position: absolute;
   right: 0;
 }
@@ -37,7 +35,6 @@ body {
                1px -1px 0 hsl(261, 50%, 79%),
                -1px 1px 0 hsl(261, 50%, 79%),
                -1px -1px 0 hsl(261, 50%, 79%);
-  top: 80px;
   z-index: 1;
 }
 
@@ -54,12 +51,18 @@ body {
 }
 
 @media screen and (max-width: 300px) {
+  #map {
+    bottom: 0;
+    height: 100%;
+  }
+
   .windowed {
     visibility: none;
   }
 
   #menu-button {
     font-size: 45px;
+    top: 80px;
   }
 
   .opened {
@@ -74,12 +77,18 @@ body {
 }
 
 @media screen and (min-width: 301px) and (max-width: 375px) {
+  #map {
+    bottom: 0;
+    height: 100%;
+  }
+
   .windowed {
     left: 82%;
   }
 
   #menu-button {
     font-size: 45px;
+    top: 80px;
   }
 
   .opened {
@@ -94,61 +103,167 @@ body {
 }
 
 @media screen and (min-width: 376px) and (max-width: 600px) {
-  .windowed {
-    left: 70%;
+  @media screen and (orientation: landscape) {
+    #map {
+      bottom: 0;
+      height: 100%;
+    }
+
+    .windowed {
+      left: 70%;
+    }
+
+    #menu-button {
+      font-size: 50px;
+      top: 80px;
+    }
+
+    .opened {
+      color: hsla(261, 94%, 50%, .85);
+      left: 74%;
+    }
+
+    .closed {
+      color: hsla(261, 94%, 50%, .8);
+      left: 18px;
+    }
   }
 
-  #menu-button {
-    font-size: 50px;
-  }
+  @media screen and (orientation: portrait) {
+    #locations {
+      height: 70%;
+      left: 0;
+      position: absolute;
+      right: 0;
+      bottom: 30%;
+    }
 
-  .opened {
-    color: hsla(261, 94%, 50%, .85);
-    left: 74%;
-  }
+    #map {
+      left: 0;
+      top: 0;
+      width: 100%;
+    }
 
-  .closed {
-    color: hsla(261, 94%, 50%, .8);
-    left: 18px;
+    .fullscreen {
+      bottom: 0;
+    }
+
+    .windowed {
+      bottom: 70%;
+    }
+
+    #menu-button {
+      font-size: 55px;
+    }
+
+    .opened {
+      color: hsla(261, 94%, 50%, .85);
+      bottom: calc(45px + 70%);
+      left: 35px;
+      transform: rotate(0.25turn) scale(.8, 1) translate(0, -8px);
+    }
+
+    .closed {
+      color: hsla(261, 94%, 50%, .8);
+      left: 35px;
+      bottom: 45px;
+      transform: rotate(-0.25turn) scale(.8, 1);
+    }
   }
 }
 
 @media screen and (min-width: 601px) and (max-width: 850px) {
-  .windowed {
-    left: 350px;
+  @media screen and (orientation: landscape) {
+    #map {
+      bottom: 0;
+      height: 100%;
+    }
+
+    .windowed {
+      left: 425px;
+    }
+
+    #menu-button {
+      font-size: 55px;
+      top: 80px;
+    }
+
+    .opened {
+      color: hsla(261, 94%, 50%, .8);
+      left: 450px;
+    }
+
+    .closed {
+      color: hsla(261, 94%, 50%, .75);
+      left: 25px;
+    }
   }
 
-  #menu-button {
-    font-size: 55px;
-  }
+  @media screen and (orientation: portrait) {
+    #locations {
+      height: 60%;
+      left: 0;
+      position: absolute;
+      right: 0;
+      bottom: 40%;
+    }
 
-  .opened {
-    color: hsla(261, 94%, 50%, .8);
-    left: 375px;
-  }
+    #map {
+      left: 0;
+      top: 0;
+      width: 100%;
+    }
 
-  .closed {
-    color: hsla(261, 94%, 50%, .75);
-    left: 25px;
+    .fullscreen {
+      bottom: 0;
+    }
+
+    .windowed {
+      bottom: 60%;
+    }
+
+    #menu-button {
+      font-size: 68px;
+    }
+
+    .opened {
+      color: hsla(261, 94%, 50%, .8);
+      bottom: calc(50px + 60%);
+      left: 45px;
+      transform: rotate(0.25turn) scale(.8, 1) translate(0, -8px);
+    }
+
+    .closed {
+      color: hsla(261, 94%, 50%, .75);
+      left: 45px;
+      bottom: 50px;
+      transform: rotate(-0.25turn) scale(.8, 1);
+    }
   }
 }
 
 @media screen and (min-width: 851px) {
+  #map {
+    bottom: 0;
+    height: 100%;
+  }
+
   .windowed {
-    left: 350px;
+    left: 450px;
   }
 
   #menu-button {
     font-size: 68px;
+    top: 80px;
   }
 
   .opened {
     color: hsla(261, 94%, 50%, .8);
-    left: 385px;
+    left: 495px;
   }
 
   .closed {
     color: hsla(261, 94%, 50%, .7);
-    left: 35px;
+    left: 45px;
   }
 }
