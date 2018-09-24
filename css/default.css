@@ -31,13 +31,7 @@ body {
   left: 0;
 }
 
-.windowed {
-  left: 300px;
-}
-
 #menu-button {
-  color: hsla(261, 94%, 50%, .7);
-  font-size: 68px;
   position: absolute;
   text-shadow: 1px 1px 0 hsl(261, 50%, 79%),
                1px -1px 0 hsl(261, 50%, 79%),
@@ -52,11 +46,109 @@ body {
 }
 
 .opened {
-  left: 325px;
-  transform: rotate(0.5turn) scale(.8, 1) translate(0, -10px);
+  transform: rotate(0.5turn) scale(.8, 1) translate(0, -8px);
 }
 
 .closed {
-  left: 25px;
   transform: scale(.8, 1);
+}
+
+@media screen and (max-width: 300px) {
+  .windowed {
+    visibility: none;
+  }
+
+  #menu-button {
+    font-size: 45px;
+  }
+
+  .opened {
+    color: hsla(261, 94%, 50%, 1);
+    left: 82%;
+  }
+
+  .closed {
+    color: hsla(261, 94%, 50%, .8);
+    left: 15px;
+  }
+}
+
+@media screen and (min-width: 301px) and (max-width: 375px) {
+  .windowed {
+    left: 82%;
+  }
+
+  #menu-button {
+    font-size: 45px;
+  }
+
+  .opened {
+    color: hsla(261, 94%, 50%, .95);
+    left: 84%;
+  }
+
+  .closed {
+    color: hsla(261, 94%, 50%, .8);
+    left: 15px;
+  }
+}
+
+@media screen and (min-width: 376px) and (max-width: 600px) {
+  .windowed {
+    left: 70%;
+  }
+
+  #menu-button {
+    font-size: 50px;
+  }
+
+  .opened {
+    color: hsla(261, 94%, 50%, .85);
+    left: 74%;
+  }
+
+  .closed {
+    color: hsla(261, 94%, 50%, .8);
+    left: 18px;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 850px) {
+  .windowed {
+    left: 350px;
+  }
+
+  #menu-button {
+    font-size: 55px;
+  }
+
+  .opened {
+    color: hsla(261, 94%, 50%, .8);
+    left: 375px;
+  }
+
+  .closed {
+    color: hsla(261, 94%, 50%, .75);
+    left: 25px;
+  }
+}
+
+@media screen and (min-width: 851px) {
+  .windowed {
+    left: 350px;
+  }
+
+  #menu-button {
+    font-size: 68px;
+  }
+
+  .opened {
+    color: hsla(261, 94%, 50%, .8);
+    left: 385px;
+  }
+
+  .closed {
+    color: hsla(261, 94%, 50%, .7);
+    left: 35px;
+  }
 }
