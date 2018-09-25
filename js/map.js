@@ -13,3 +13,7 @@ function initMap() {
     zoom: 15
   });
 }
+
+function mapError() {
+  alert("the map is currently unavailable");
+}
