@@ -14,6 +14,9 @@ function initMap() {
   });
 }
 
+/**
+ * @description Alerts user if Google Maps API does not load
+ */
 function mapError() {
   alert("the map is currently unavailable");
 }
