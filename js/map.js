@@ -33,15 +33,24 @@ var locations = [
     {title: 'The Chocolate Room', position: {lat: 40.681202, lng: -73.977011}}
   ];
 
+var markers = [];
+
 /**
- * @description Add a new Marker object to the map
+ * @description Creates a new Marker object from a location
  */
-var addMarker = function(location) {
+var createMarker = function(location) {
   var marker = new google.maps.Marker({
     position: location.position,
-    map: map,
     title: location.title
   });
+  markers.push(marker);
+}
+
+/**
+ * @description Adds a Marker object to the map
+ */
+var addMarker = function(marker) {
+  marker.setMap(map);
 }
 
 /**
@@ -53,7 +62,8 @@ function initMap() {
     zoom: 15
   });
 
-  locations.forEach(addMarker);
+  locations.forEach(createMarker);
+  markers.forEach(addMarker);
 }
 
 /**
