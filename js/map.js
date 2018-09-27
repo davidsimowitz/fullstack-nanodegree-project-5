@@ -54,6 +54,17 @@ var addMarker = function(marker) {
 }
 
 /**
+ * @description Sets map bounds to include default markers
+ */
+var defaultBounds = function() {
+  var bounds = new google.maps.LatLngBounds();
+  markers.forEach(function(marker) {
+    bounds.extend(marker.position);
+  });
+  map.fitBounds(bounds);
+}
+
+/**
  * @description Initializes Map
  */
 function initMap() {
@@ -64,6 +75,7 @@ function initMap() {
 
   locations.forEach(createMarker);
   markers.forEach(addMarker);
+  defaultBounds();
 }
 
 /**
