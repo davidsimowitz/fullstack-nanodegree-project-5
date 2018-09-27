@@ -2,10 +2,6 @@
  * @file Implements and modifies map using Google Maps API
  */
 
-var map;
-
-var markers = [];
-
 /**
  * @description Creates a new Marker object from a location
  */

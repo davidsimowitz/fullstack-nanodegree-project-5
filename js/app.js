@@ -2,6 +2,10 @@
  * @file Implements location list menu functionality
  */
 
+var map;
+
+var markers = [];
+
 var LocationsList = function() {
   this.open = ko.observable(true);
 
