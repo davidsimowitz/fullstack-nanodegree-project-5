@@ -55,6 +55,17 @@ var addMarker = function(marker) {
 }
 
 /**
+ * @description Add a single bounce animation to a Marker
+ * object when clicked
+ */
+var singleBounceWhenClicked = function(marker) {
+  marker.addListener('click', function() {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+    marker.setAnimation(null);
+  });
+}
+
+/**
  * @description Sets map bounds to include default markers
  */
 var defaultBounds = function() {
@@ -76,6 +87,7 @@ function initMap() {
 
   locations.forEach(createMarker);
   markers.forEach(addMarker);
+  markers.forEach(singleBounceWhenClicked);
   defaultBounds();
 }
 
