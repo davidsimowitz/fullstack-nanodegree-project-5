@@ -1,5 +1,5 @@
 /**
- * @file Contains the App's default location data
+ * @file Contains the App's default location data.
  */
 
 var defaultLocations = [

@@ -1,11 +1,14 @@
 /**
- * @file Implements location list menu functionality
+ * @file Implement App's location list menu functionality.
  */
 
 var map;
 
 var markers = [];
 
+/**
+ * @class LocationsList
+ */
 var LocationsList = function() {
   this.open = ko.observable(true);
 
@@ -18,6 +21,9 @@ var LocationsList = function() {
   }, this);
 }
 
+/**
+ * @class AppViewModel
+ */
 var AppViewModel = function() {
   var self = this;
 
