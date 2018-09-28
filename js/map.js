@@ -9,8 +9,8 @@
  * @param {string} location.title - The name of the location.
  * @param {Object} location.position - a LatLng object or
  * LatLngLiteral representing a point in geographical coordinates.
- * @description Creates a new Marker object from a location and
- * stores it in an Array.
+ * @returns {Object} marker
+ * @description Creates a new Marker object from a location.
  */
 var createMarker = function(location) {
   var marker = new google.maps.Marker({
@@ -18,7 +18,8 @@ var createMarker = function(location) {
     position: location.position,
     title: location.title
   });
-  markers.push(marker);
+
+  return(marker);
 }
 
 /**
@@ -56,6 +57,21 @@ var defaultBounds = function() {
 }
 
 /**
+ * @function addLocation
+ * @param {Object} location - contains location data.
+ * @param {string} location.title - The name of the location.
+ * @param {Object} location.position - a LatLng object or
+ * LatLngLiteral representing a point in geographical coordinates.
+ * @description Adds a new location to the App.
+ */
+var addLocation = function(location) {
+  let marker = createMarker(location);
+  singleBounceWhenClicked(marker);
+  addMarker(marker);
+  markers.push(marker);
+}
+
+/**
  * @function initMap
  * @description Initializes Map object.
  */
@@ -65,9 +81,7 @@ function initMap() {
     zoom: 15
   });
 
-  defaultLocations.forEach(createMarker);
-  markers.forEach(addMarker);
-  markers.forEach(singleBounceWhenClicked);
+  defaultLocations.forEach(addLocation);
   defaultBounds();
 }
 
