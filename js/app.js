@@ -21,8 +21,7 @@ class Location {
     this.isVisible = ko.observable(true);
 
     singleBounceWhenClicked(this.marker);
-    addMarker(this.marker);
-    markers.push(this.marker);
+    addMarkerToApp(this.marker);
   }
 }
 

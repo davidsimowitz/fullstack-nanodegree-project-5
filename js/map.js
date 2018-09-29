@@ -23,11 +23,12 @@ var createMarker = function(location) {
 }
 
 /**
- * @function addMarker
+ * @function addMarkerToApp
  * @param {Object} marker
- * @description Adds a Marker object to the map.
+ * @description Adds a Marker object to the App.
  */
-var addMarker = function(marker) {
+var addMarkerToApp = function(marker) {
+  markers.push(marker);
   marker.setMap(map);
 }
 
