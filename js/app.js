@@ -62,7 +62,7 @@ var AppViewModel = function() {
       defaultLocations.forEach(self.addLocationToApp);
       resizeMapBounds();
     }
-  }, this);
+  }, self);
 }
 
 ko.applyBindings(new AppViewModel());
