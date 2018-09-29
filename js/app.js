@@ -54,7 +54,7 @@ var AppViewModel = function() {
   };
 
   self.addLocationToApp = function(location) {
-    self.locationsList().locations().push(new Location(location));
+    self.locationsList().locations.push(new Location(location));
   };
 
   self.loadLocations = ko.computed(function() {
