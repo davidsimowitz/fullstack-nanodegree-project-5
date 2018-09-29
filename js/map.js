@@ -57,21 +57,6 @@ var defaultBounds = function() {
 }
 
 /**
- * @function addLocation
- * @param {Object} location - contains location data.
- * @param {string} location.title - The name of the location.
- * @param {Object} location.position - a LatLng object or
- * LatLngLiteral representing a point in geographical coordinates.
- * @description Adds a new location to the App.
- */
-var addLocation = function(location) {
-  let marker = createMarker(location);
-  singleBounceWhenClicked(marker);
-  addMarker(marker);
-  markers.push(marker);
-}
-
-/**
  * @function initMap
  * @description Initializes Map object.
  */
