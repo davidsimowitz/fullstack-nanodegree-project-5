@@ -6,6 +6,8 @@ var map;
 
 var markers = [];
 
+var startLocationProcessing = ko.observable(false);
+
 /**
  * @class LocationsList
  */
@@ -32,6 +34,13 @@ var AppViewModel = function() {
   self.toggleLocationList = function() {
     self.locationsList().open(self.locationsList().open() ? false : true);
   };
+
+  self.loadLocations = ko.computed(function() {
+    if (startLocationProcessing()) {
+      defaultLocations.forEach(addLocation);
+      defaultBounds();
+    }
+  }, this);
 }
 
 ko.applyBindings(new AppViewModel());

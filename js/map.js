@@ -81,8 +81,7 @@ function initMap() {
     zoom: 15
   });
 
-  defaultLocations.forEach(addLocation);
-  defaultBounds();
+  startLocationProcessing(true);
 }
 
 /**
