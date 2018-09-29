@@ -46,15 +46,23 @@ var singleBounceWhenClicked = function(marker) {
 }
 
 /**
- * @function defaultBounds
- * @description Sets map bounds to include default markers.
+ * @function resizeMapBounds
+ * @description Sets map bounds to include visible markers.
  */
-var defaultBounds = function() {
+var resizeMapBounds = function() {
   var bounds = new google.maps.LatLngBounds();
+  var anyVisibleMarkers = false;
+
   markers.forEach(function(marker) {
-    bounds.extend(marker.position);
+    if (marker.getVisible()) {
+      bounds.extend(marker.position);
+      anyVisibleMarkers = true;
+    }
   });
-  map.fitBounds(bounds);
+
+  if (anyVisibleMarkers) {
+    map.fitBounds(bounds);
+  }
 }
 
 /**

@@ -60,7 +60,7 @@ var AppViewModel = function() {
   self.loadLocations = ko.computed(function() {
     if (startLocationProcessing()) {
       defaultLocations.forEach(self.addLocationToApp);
-      defaultBounds();
+      resizeMapBounds();
     }
   }, this);
 }
