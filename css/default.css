@@ -17,12 +17,33 @@ body {
 }
 
 #locations {
+  height: 100vh;
+  overflow: hidden;
+  width: 100vw;
+}
+
+.location-container {
   height: 100%;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.location-wrapper {
+  height: 50px;
+  width: 100%;
+}
+
+.location-title {
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 #map {
   position: absolute;
   right: 0;
+  top: 0;
 }
 
 .fullscreen {
@@ -52,7 +73,6 @@ body {
 
 @media screen and (max-width: 300px) {
   #map {
-    bottom: 0;
     height: 100%;
   }
 
@@ -77,8 +97,11 @@ body {
 }
 
 @media screen and (min-width: 301px) and (max-width: 375px) {
+  .location-wrapper {
+    width: 82%;
+  }
+
   #map {
-    bottom: 0;
     height: 100%;
   }
 
@@ -104,8 +127,11 @@ body {
 
 @media screen and (min-width: 376px) and (max-width: 600px) {
   @media screen and (orientation: landscape) {
+    .location-wrapper {
+      width: 70%;
+    }
+
     #map {
-      bottom: 0;
       height: 100%;
     }
 
@@ -131,16 +157,12 @@ body {
 
   @media screen and (orientation: portrait) {
     #locations {
-      height: 70%;
-      left: 0;
+      bottom: 0;
+      height: 70vh;
       position: absolute;
-      right: 0;
-      bottom: 30%;
     }
 
     #map {
-      left: 0;
-      top: 0;
       width: 100%;
     }
 
@@ -174,8 +196,11 @@ body {
 
 @media screen and (min-width: 601px) and (max-width: 850px) {
   @media screen and (orientation: landscape) {
+    .location-wrapper {
+      width: 425px;
+    }
+
     #map {
-      bottom: 0;
       height: 100%;
     }
 
@@ -201,16 +226,12 @@ body {
 
   @media screen and (orientation: portrait) {
     #locations {
-      height: 60%;
-      left: 0;
+      bottom: 0;
+      height: 60vh;
       position: absolute;
-      right: 0;
-      bottom: 40%;
     }
 
     #map {
-      left: 0;
-      top: 0;
       width: 100%;
     }
 
@@ -243,8 +264,11 @@ body {
 }
 
 @media screen and (min-width: 851px) {
+  .location-wrapper {
+    width: 450px;
+  }
+
   #map {
-    bottom: 0;
     height: 100%;
   }
 
