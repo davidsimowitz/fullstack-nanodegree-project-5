@@ -17,7 +17,7 @@ var startLocationProcessing = ko.observable(false);
  */
 class Location {
   constructor(location) {
-    this.marker = createMarker(location);
+    this.marker = createAppMarker(location);
     this.isVisible = ko.observable(true);
 
     this.focus = function(){
@@ -27,11 +27,6 @@ class Location {
     this.unfocus = function(){
       unhighlightMarker(this.marker);
     };
-
-    singleBounceWhenClicked(this.marker);
-    setMouseover(this.marker);
-    setMouseout(this.marker);
-    addMarkerToApp(this.marker);
   }
 }
 

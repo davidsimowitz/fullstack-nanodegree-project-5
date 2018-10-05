@@ -8,6 +8,23 @@ var iconDefault = './img/icon-default.svg';
 var iconPath = 'M0.5,13.031c0,9.114,7.443,12.911,10.177,21.342c2.05,6.321,1.199,7.704,2.517,7.704c1.189,0,0.983-2.251,2.799-8.16c2.925-9.512,9.949-12.452,9.949-20.658C25.942,7.49,21.903,0.5,13.107,0.5C4.011,0.5,0.5,7.943,0.5,13.031z';
 
 /**
+ * @function createAppMarker
+ * @param {Object} location
+ * @param {string} location.title - The name of the location.
+ * @param {Object} location.position - a LatLng object or
+ * LatLngLiteral representing a point in geographical coordinates.
+ * @returns {Object} marker
+ * @description Creates a new Marker object from a location and
+ * sets it to the default settings for the App.
+ */
+var createAppMarker = function(location) {
+  var marker = createMarker(location);
+  setMarkerEvents(marker);
+  addMarkerToApp(marker);
+  return marker;
+}
+
+/**
  * @function createMarker
  * @param {Object} location
  * @param {string} location.title - The name of the location.
@@ -35,6 +52,17 @@ var createMarker = function(location) {
 var addMarkerToApp = function(marker) {
   markers.push(marker);
   marker.setMap(map);
+}
+
+/**
+ * @function setMarkerEvents
+ * @param {Object} marker
+ * @description Set default events to Marker object.
+ */
+var setMarkerEvents = function(marker) {
+  setMouseover(marker);
+  setMouseout(marker);
+  singleBounceWhenClicked(marker);
 }
 
 /**
