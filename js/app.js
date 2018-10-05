@@ -20,11 +20,11 @@ class Location {
     this.marker = createAppMarker(location);
     this.isVisible = ko.observable(true);
 
-    this.focus = function(){
+    this.listItemOver = function(){
       highlightMarker(this.marker);
     };
 
-    this.unfocus = function(){
+    this.listItemOut = function(){
       unhighlightMarker(this.marker);
     };
   }
