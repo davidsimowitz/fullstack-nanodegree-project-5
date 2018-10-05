@@ -20,7 +20,17 @@ class Location {
     this.marker = createMarker(location);
     this.isVisible = ko.observable(true);
 
+    this.focus = function(){
+      highlightMarker(this.marker);
+    };
+
+    this.unfocus = function(){
+      unhighlightMarker(this.marker);
+    };
+
     singleBounceWhenClicked(this.marker);
+    setMouseover(this.marker);
+    setMouseout(this.marker);
     addMarkerToApp(this.marker);
   }
 }
