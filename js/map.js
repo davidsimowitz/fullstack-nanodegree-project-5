@@ -62,7 +62,7 @@ var addMarkerToApp = function(marker) {
 var setMarkerEvents = function(marker) {
   setMouseover(marker);
   setMouseout(marker);
-  singleBounceWhenClicked(marker);
+  setClick(marker);
 }
 
 /**
@@ -112,16 +112,25 @@ var setMouseout = function(marker) {
 }
 
 /**
+ * @function setClick
+ * @param {Object} marker
+ * @description Add click events to Marker object.
+ */
+var setClick = function(marker) {
+  marker.addListener('click', function() {
+    singleBounceWhenClicked(this);
+  });
+}
+
+/**
  * @function singleBounceWhenClicked
  * @param {Object} marker
- * @description Add a single bounce animation to a Marker
- * object when clicked.
+ * @description Add a single bounce animation to Marker
+ * object.
  */
 var singleBounceWhenClicked = function(marker) {
-  marker.addListener('click', function() {
-    marker.setAnimation(google.maps.Animation.BOUNCE);
-    marker.setAnimation(null);
-  });
+  marker.setAnimation(google.maps.Animation.BOUNCE);
+  marker.setAnimation(null);
 }
 
 /**
