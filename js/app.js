@@ -27,6 +27,10 @@ class Location {
     this.listItemOut = function(){
       unhighlightMarker(this.marker);
     };
+
+    this.listItemClick = function(){
+      singleBounceAnimation(this.marker);
+    };
   }
 }
 
