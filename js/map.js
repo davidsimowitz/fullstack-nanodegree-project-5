@@ -48,7 +48,7 @@ var highlightMarker = function(marker) {
     fillColor: 'hsl(272, 94%, 50%)',
     fillOpacity: 1.0,
     path: iconPath,
-    strokeColor: '#FFFFFF'
+    strokeColor: 'hsl(0, 0%, 100%)'
   });
 }
 
