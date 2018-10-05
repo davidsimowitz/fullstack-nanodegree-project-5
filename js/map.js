@@ -34,14 +34,12 @@ var createAppMarker = function(location) {
  * @description Creates a new Marker object from a location.
  */
 var createMarker = function(location) {
-  var marker = new google.maps.Marker({
+  return new google.maps.Marker({
     animation: google.maps.Animation.DROP,
     icon: iconDefault,
     position: location.position,
     title: location.title
   });
-
-  return(marker);
 }
 
 /**
@@ -60,9 +58,42 @@ var addMarkerToApp = function(marker) {
  * @description Set default events to Marker object.
  */
 var setMarkerEvents = function(marker) {
-  setMouseover(marker);
-  setMouseout(marker);
-  setClick(marker);
+  setMarkerMouseoverEvents(marker);
+  setMarkerMouseoutEvents(marker);
+  setMarkerClickEvents(marker);
+}
+
+/**
+ * @function setMarkerMouseoverEvents
+ * @param {Object} marker
+ * @description Add default mouseover events to Marker object.
+ */
+var setMarkerMouseoverEvents = function(marker) {
+  marker.addListener('mouseover', function() {
+    highlightMarker(this);
+  });
+}
+
+/**
+ * @function setMarkerMouseoutEvents
+ * @param {Object} marker
+ * @description Add default mouseout events to Marker object.
+ */
+var setMarkerMouseoutEvents = function(marker) {
+  marker.addListener('mouseout', function() {
+    unhighlightMarker(this);
+  });
+}
+
+/**
+ * @function setMarkerClickEvents
+ * @param {Object} marker
+ * @description Add default click events to Marker object.
+ */
+var setMarkerClickEvents = function(marker) {
+  marker.addListener('click', function() {
+    singleBounceAnimation(this);
+  });
 }
 
 /**
@@ -90,45 +121,12 @@ var unhighlightMarker = function(marker) {
 }
 
 /**
- * @function setMouseover
- * @param {Object} marker
- * @description Change Icon to show mouseover.
- */
-var setMouseover = function(marker) {
-  marker.addListener('mouseover', function() {
-    highlightMarker(this);
-  });
-}
-
-/**
- * @function setMouseout
- * @param {Object} marker
- * @description Change Icon back after mouseover.
- */
-var setMouseout = function(marker) {
-  marker.addListener('mouseout', function() {
-    unhighlightMarker(this);
-  });
-}
-
-/**
- * @function setClick
- * @param {Object} marker
- * @description Add click events to Marker object.
- */
-var setClick = function(marker) {
-  marker.addListener('click', function() {
-    singleBounceWhenClicked(this);
-  });
-}
-
-/**
- * @function singleBounceWhenClicked
+ * @function singleBounceAnimation
  * @param {Object} marker
  * @description Add a single bounce animation to Marker
  * object.
  */
-var singleBounceWhenClicked = function(marker) {
+var singleBounceAnimation = function(marker) {
   marker.setAnimation(google.maps.Animation.BOUNCE);
   marker.setAnimation(null);
 }
