@@ -3,6 +3,8 @@
  * Google Maps API.
  */
 
+var iconDefault = './img/icon-default.svg';
+
 /**
  * @function createMarker
  * @param {Object} location
@@ -15,7 +17,7 @@
 var createMarker = function(location) {
   var marker = new google.maps.Marker({
     animation: google.maps.Animation.DROP,
-    icon: './img/icon-default.svg',
+    icon: iconDefault,
     position: location.position,
     title: location.title
   });
@@ -54,7 +56,7 @@ var highlightMarker = function(marker) {
  * @description Restore Icon color.
  */
 var unhighlightMarker = function(marker) {
-  marker.setIcon('./img/icon-default.svg');
+  marker.setIcon(iconDefault);
 }
 
 /**
