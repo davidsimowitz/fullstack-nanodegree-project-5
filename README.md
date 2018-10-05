@@ -31,6 +31,7 @@ $ cd fullstack-nanodegree-project-5
 ```
   + Verify the following files/folders are present before continuing:
     * css
+    * img
     * index.html
     * js
     * README.md
