@@ -25,6 +25,19 @@ var createAppMarker = function(location) {
 }
 
 /**
+ * @function createInfoWindow
+ * @param {string} infoWindowContent - content to display in
+ * the InfoWindow object written in HTML format.
+ * @returns {Object} infoWindow
+ * @description Creates a new InfoWindow object.
+ */
+var createInfoWindow = function(infoWindowContent) {
+  return new google.maps.InfoWindow({
+    content: infoWindowContent
+  });
+}
+
+/**
  * @function createMarker
  * @param {Object} location
  * @param {string} location.title - The name of the location.
