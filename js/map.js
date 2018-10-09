@@ -3,8 +3,6 @@
  * Google Maps API.
  */
 
-var iconDefault = './img/icon-default.svg';
-
 var iconPath = 'M0.5,13.031c0,9.114,7.443,12.911,10.177,21.342c2.05,6.321,1.199,7.704,2.517,7.704c1.189,0,0.983-2.251,2.799-8.16c2.925-9.512,9.949-12.452,9.949-20.658C25.942,7.49,21.903,0.5,13.107,0.5C4.011,0.5,0.5,7.943,0.5,13.031z';
 
 /**
@@ -22,6 +20,26 @@ var createAppMarker = function(location) {
   setMarkerEvents(marker);
   addMarkerToApp(marker);
   return marker;
+}
+
+/**
+ * @function createIcon
+ * @param {number} hue - The hue of the fill color.
+ * @param {number} saturation - The saturation of the fill color.
+ * @param {number} lightness - The lightness of the fill color.
+ * @returns {String} Icon
+ * @description Creates a new icon to be set to a marker object. The
+ * icon's fill color will be determined by the supplied HSL color
+ * format parameters.
+ */
+var createIcon = function(hue = 233, saturation = 94, lightness = 50) {
+  return {
+    anchor: new google.maps.Point(13, 42),
+    fillColor: 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)',
+    fillOpacity: 1.0,
+    path: iconPath,
+    strokeColor: 'hsl(0, 0%, 100%)'
+  };
 }
 
 /**
@@ -49,7 +67,7 @@ var createInfoWindow = function(infoWindowContent) {
 var createMarker = function(location) {
   return new google.maps.Marker({
     animation: google.maps.Animation.DROP,
-    icon: iconDefault,
+    icon: createIcon(hue = 233),
     position: location.position,
     title: location.title
   });
@@ -115,13 +133,7 @@ var setMarkerClickEvents = function(marker) {
  * @description Change Icon color.
  */
 var highlightMarker = function(marker) {
-  marker.setIcon({
-    anchor: new google.maps.Point(13, 42),
-    fillColor: 'hsl(272, 94%, 50%)',
-    fillOpacity: 1.0,
-    path: iconPath,
-    strokeColor: 'hsl(0, 0%, 100%)'
-  });
+  marker.setIcon(createIcon(hue = 272));
 }
 
 /**
@@ -130,7 +142,7 @@ var highlightMarker = function(marker) {
  * @description Restore Icon color.
  */
 var unhighlightMarker = function(marker) {
-  marker.setIcon(iconDefault);
+  marker.setIcon(createIcon(hue = 233));
 }
 
 /**
