@@ -3,7 +3,7 @@
  */
 
 var map;
-
+var markerInfoWindow;
 var markers = [];
 
 var startLocationProcessing = ko.observable(false);
@@ -18,7 +18,6 @@ var startLocationProcessing = ko.observable(false);
 class Location {
   constructor(location) {
     this.marker = createAppMarker(location);
-    this.infoWindow = createInfoWindow(this.marker.title);
     this.isVisible = ko.observable(true);
 
     this.listItemOver = function(){
@@ -31,7 +30,7 @@ class Location {
 
     this.listItemClick = function(){
       singleBounceAnimation(this.marker);
-      this.infoWindow.open(map, this.marker);
+      setInfoWindow(this.marker);
     };
   }
 }

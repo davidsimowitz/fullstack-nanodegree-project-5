@@ -49,10 +49,32 @@ var createIcon = function(hue = 233, saturation = 94, lightness = 50) {
  * @returns {Object} infoWindow
  * @description Creates a new InfoWindow object.
  */
-var createInfoWindow = function(infoWindowContent) {
+var createInfoWindow = function(infoWindowContent = '') {
   return new google.maps.InfoWindow({
     content: infoWindowContent
   });
+}
+
+/**
+ * @function setInfoWindow
+ * @param {Object} marker
+ * @description Set the markerInfoWindow to the associated
+ * marker parameter.
+ */
+var setInfoWindow = function(marker) {
+  generateInfoWindowContent(marker);
+  markerInfoWindow.open(map, marker);
+}
+
+/**
+ * @function generateInfoWindowContent
+ * @param {Object} marker
+ * @description Set the content on the markerInfoWindow to that of
+ * the information associated with the marker parameter.
+ */
+var generateInfoWindowContent = function(marker) {
+  let infoWindowContent = marker.title;
+  markerInfoWindow.setContent(infoWindowContent);
 }
 
 /**
@@ -185,7 +207,7 @@ function initMap() {
     center: {lat: 40.690753, lng: -73.995638},
     zoom: 15
   });
-
+  markerInfoWindow = createInfoWindow();
   startLocationProcessing(true);
 }
 
