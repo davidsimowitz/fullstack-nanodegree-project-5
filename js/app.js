@@ -3,9 +3,9 @@
  */
 
 var map;
-var markerInfoWindow;
+var appInfoWindow;
 var markers = [];
-
+var currentMarker;
 var startLocationProcessing = ko.observable(false);
 
 /**
@@ -29,8 +29,9 @@ class Location {
     };
 
     this.listItemClick = function(){
+      currentMarker = this.marker;
       singleBounceAnimation(this.marker);
-      setInfoWindow(this.marker);
+      appInfoWindow.open(map, this.marker)
     };
   }
 }
@@ -70,6 +71,7 @@ var AppViewModel = function() {
   self.loadLocations = ko.computed(function() {
     if (startLocationProcessing()) {
       defaultLocations.forEach(self.addLocationToApp);
+      initAppInfoWindow();
       resizeMapBounds();
     }
   }, self);

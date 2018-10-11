@@ -43,6 +43,16 @@ var createIcon = function(hue = 233, saturation = 94, lightness = 50) {
 }
 
 /**
+ * @function initAppInfoWindow
+ * @description Initializes the App's InfoWindow object and sets it
+ * to the default settings.
+ */
+var initAppInfoWindow = function() {
+  appInfoWindow = createInfoWindow();
+  setInfoWindowEvents();
+}
+
+/**
  * @function createInfoWindow
  * @param {string} infoWindowContent - content to display in
  * the InfoWindow object written in HTML format.
@@ -56,25 +66,27 @@ var createInfoWindow = function(infoWindowContent = '') {
 }
 
 /**
- * @function setInfoWindow
+ * @function generateInfoWindowContent
+ * @param {Object} infoWindow
  * @param {Object} marker
- * @description Set the markerInfoWindow to the associated
- * marker parameter.
+ * @description Set the content on the infoWindow to that of
+ * the information associated with the marker parameter.
  */
-var setInfoWindow = function(marker) {
-  generateInfoWindowContent(marker);
-  markerInfoWindow.open(map, marker);
+var generateInfoWindowContent = function(infoWindow = appInfoWindow, marker = currentMarker) {
+  let infoWindowContent = marker.title;
+  infoWindow.setContent(infoWindowContent);
 }
 
 /**
- * @function generateInfoWindowContent
+ * @function setInfoWindowEvents
+ * @param {Object} infoWindow
  * @param {Object} marker
- * @description Set the content on the markerInfoWindow to that of
- * the information associated with the marker parameter.
+ * @description Set default events to InfoWindow object.
  */
-var generateInfoWindowContent = function(marker) {
-  let infoWindowContent = marker.title;
-  markerInfoWindow.setContent(infoWindowContent);
+var setInfoWindowEvents = function(infoWindow = appInfoWindow, marker = currentMarker) {
+  infoWindow.addListener('position_changed', function() {
+    generateInfoWindowContent(infoWindow = appInfoWindow, marker = currentMarker);
+  });
 }
 
 /**
@@ -207,7 +219,7 @@ function initMap() {
     center: {lat: 40.690753, lng: -73.995638},
     zoom: 15
   });
-  markerInfoWindow = createInfoWindow();
+
   startLocationProcessing(true);
 }
 
