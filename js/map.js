@@ -40,7 +40,7 @@ var createIcon = function(hue = 233, saturation = 94, lightness = 50) {
     fillColor: 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)',
     fillOpacity: 1.0,
     path: iconPath,
-    strokeColor: 'hsl(0, 0%, 100%)'
+    strokeColor: 'hsl(0, 0%, 100%)',
   };
 }
 
@@ -63,7 +63,7 @@ var initAppInfoWindow = function() {
  */
 var createInfoWindow = function(infoWindowContent = '') {
   return new google.maps.InfoWindow({
-    content: infoWindowContent
+    content: infoWindowContent,
   });
 }
 
@@ -91,7 +91,7 @@ var setInfoWindowEvents =
       infoWindow.addListener('position_changed', function() {
         generateInfoWindowContent(
           infoWindow = appInfoWindow,
-          marker = currentMarker
+          marker = currentMarker,
         );
       });
     }
@@ -110,7 +110,7 @@ var createMarker = function(location) {
     animation: google.maps.Animation.DROP,
     icon: createIcon(hue = 233),
     position: location.position,
-    title: location.title
+    title: location.title,
   });
 }
 
@@ -224,7 +224,7 @@ var resizeMapBounds = function() {
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 40.690753, lng: -73.995638},
-    zoom: 15
+    zoom: 15,
   });
 
   startLocationProcessing(true);
