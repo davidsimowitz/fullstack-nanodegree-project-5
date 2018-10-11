@@ -9,6 +9,18 @@ var iconPath = 'M0.5,13.031c0,9.114,7.443,12.911,10.177,21.342c2.05,6.321,' +
     '0.5,0.5,7.943,0.5,13.031z';
 
 /**
+ * @function hsl
+ * @param {number} h - The hue of the color.
+ * @param {number} s - The saturation of the color.
+ * @param {number} l - The lightness of the color.
+ * @returns {string} color in HSL format
+ * @description Creates a new color using the HSL color format parameters.
+ */
+var hsl = function(h = 233, s = 94, l = 50) {
+  return 'hsl(' + h + ', ' + s + '%, ' + l + '%)';
+}
+
+/**
  * @function createAppMarker
  * @param {Object} location
  * @param {string} location.title - The name of the location.
@@ -27,17 +39,15 @@ var createAppMarker = function(location) {
 
 /**
  * @function createIcon
- * @param {number} hue - The hue of the fill color.
- * @param {number} saturation - The saturation of the fill color.
- * @param {number} lightness - The lightness of the fill color.
- * @returns {String} Icon
+ * @param {string} color - The fill color in HSL format.
+ * @returns {string} Icon
  * @description Creates a new icon to be set to a marker object. The icon's
  * fill color will be determined by the supplied HSL color format parameters.
  */
-var createIcon = function(hue = 233, saturation = 94, lightness = 50) {
+var createIcon = function(color = hsl(h = 233, s = 94, l = 50)) {
   return {
     anchor: new google.maps.Point(13, 42),
-    fillColor: 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)',
+    fillColor: color,
     fillOpacity: 1.0,
     path: iconPath,
     strokeColor: 'hsl(0, 0%, 100%)',
@@ -101,14 +111,15 @@ var setInfoWindowEvents =
  * @param {Object} location
  * @param {string} location.title - The name of the location.
  * @param {Object} location.position - a LatLng object or LatLngLiteral
+ * @param {string} color - The fill color in HSL format.
  * representing a point in geographical coordinates.
  * @returns {Object} marker
  * @description Creates a new Marker object from a location.
  */
-var createMarker = function(location) {
+var createMarker = function(location, color = hsl(h = 233, s = 94, l = 50)) {
   return new google.maps.Marker({
     animation: google.maps.Animation.DROP,
-    icon: createIcon(hue = 233),
+    icon: createIcon(color),
     position: location.position,
     title: location.title,
   });
@@ -171,20 +182,24 @@ var setMarkerClickEvents = function(marker) {
 /**
  * @function highlightMarker
  * @param {Object} marker
+ * @param {string} color - The fill color in HSL format.
  * @description Change Icon color.
  */
-var highlightMarker = function(marker) {
-  marker.setIcon(createIcon(hue = 272));
-}
+var highlightMarker =
+    function(marker, color = hsl(h = 272, s = 94, l = 50)) {
+      marker.setIcon(createIcon(color));
+    }
 
 /**
  * @function unhighlightMarker
  * @param {Object} marker
+ * @param {string} color - The fill color in HSL format.
  * @description Restore Icon color.
  */
-var unhighlightMarker = function(marker) {
-  marker.setIcon(createIcon(hue = 233));
-}
+var unhighlightMarker =
+    function(marker, color = hsl(h = 233, s = 94, l = 50)) {
+      marker.setIcon(createIcon(color));
+    }
 
 /**
  * @function singleBounceAnimation
