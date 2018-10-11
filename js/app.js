@@ -12,8 +12,8 @@ var startLocationProcessing = ko.observable(false);
  * @class Location
  * @param {Object} location
  * @param {string} location.title - The name of the location.
- * @param {Object} location.position - a LatLng object or
- * LatLngLiteral representing a point in geographical coordinates.
+ * @param {Object} location.position - a LatLng object or LatLngLiteral
+ * representing a point in geographical coordinates.
  */
 class Location {
   constructor(location) {

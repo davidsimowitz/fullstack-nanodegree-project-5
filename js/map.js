@@ -3,17 +3,20 @@
  * Google Maps API.
  */
 
-var iconPath = 'M0.5,13.031c0,9.114,7.443,12.911,10.177,21.342c2.05,6.321,1.199,7.704,2.517,7.704c1.189,0,0.983-2.251,2.799-8.16c2.925-9.512,9.949-12.452,9.949-20.658C25.942,7.49,21.903,0.5,13.107,0.5C4.011,0.5,0.5,7.943,0.5,13.031z';
+var iconPath = 'M0.5,13.031c0,9.114,7.443,12.911,10.177,21.342c2.05,6.321,' +
+    '1.199,7.704,2.517,7.704c1.189,0,0.983-2.251,2.799-8.16c2.925-9.512,' +
+    '9.949-12.452,9.949-20.658C25.942,7.49,21.903,0.5,13.107,0.5C4.011,' +
+    '0.5,0.5,7.943,0.5,13.031z';
 
 /**
  * @function createAppMarker
  * @param {Object} location
  * @param {string} location.title - The name of the location.
- * @param {Object} location.position - a LatLng object or
- * LatLngLiteral representing a point in geographical coordinates.
+ * @param {Object} location.position - a LatLng object or LatLngLiteral
+ * representing a point in geographical coordinates.
  * @returns {Object} marker
- * @description Creates a new Marker object from a location and
- * sets it to the default settings for the App.
+ * @description Creates a new Marker object from a location and sets it to the
+ * default settings for the App.
  */
 var createAppMarker = function(location) {
   var marker = createMarker(location);
@@ -28,9 +31,8 @@ var createAppMarker = function(location) {
  * @param {number} saturation - The saturation of the fill color.
  * @param {number} lightness - The lightness of the fill color.
  * @returns {String} Icon
- * @description Creates a new icon to be set to a marker object. The
- * icon's fill color will be determined by the supplied HSL color
- * format parameters.
+ * @description Creates a new icon to be set to a marker object. The icon's
+ * fill color will be determined by the supplied HSL color format parameters.
  */
 var createIcon = function(hue = 233, saturation = 94, lightness = 50) {
   return {
@@ -44,8 +46,8 @@ var createIcon = function(hue = 233, saturation = 94, lightness = 50) {
 
 /**
  * @function initAppInfoWindow
- * @description Initializes the App's InfoWindow object and sets it
- * to the default settings.
+ * @description Initializes the App's InfoWindow object and sets it to the
+ * default settings.
  */
 var initAppInfoWindow = function() {
   appInfoWindow = createInfoWindow();
@@ -54,8 +56,8 @@ var initAppInfoWindow = function() {
 
 /**
  * @function createInfoWindow
- * @param {string} infoWindowContent - content to display in
- * the InfoWindow object written in HTML format.
+ * @param {string} infoWindowContent - content to display in the InfoWindow
+ * object written in HTML format.
  * @returns {Object} infoWindow
  * @description Creates a new InfoWindow object.
  */
@@ -69,13 +71,14 @@ var createInfoWindow = function(infoWindowContent = '') {
  * @function generateInfoWindowContent
  * @param {Object} infoWindow
  * @param {Object} marker
- * @description Set the content on the infoWindow to that of
- * the information associated with the marker parameter.
+ * @description Set the content on the infoWindow to that of the information
+ * associated with the marker parameter.
  */
-var generateInfoWindowContent = function(infoWindow = appInfoWindow, marker = currentMarker) {
-  let infoWindowContent = marker.title;
-  infoWindow.setContent(infoWindowContent);
-}
+var generateInfoWindowContent =
+  function(infoWindow = appInfoWindow, marker = currentMarker) {
+    let infoWindowContent = marker.title;
+    infoWindow.setContent(infoWindowContent);
+  }
 
 /**
  * @function setInfoWindowEvents
@@ -83,18 +86,22 @@ var generateInfoWindowContent = function(infoWindow = appInfoWindow, marker = cu
  * @param {Object} marker
  * @description Set default events to InfoWindow object.
  */
-var setInfoWindowEvents = function(infoWindow = appInfoWindow, marker = currentMarker) {
-  infoWindow.addListener('position_changed', function() {
-    generateInfoWindowContent(infoWindow = appInfoWindow, marker = currentMarker);
-  });
-}
+var setInfoWindowEvents =
+    function(infoWindow = appInfoWindow, marker = currentMarker) {
+      infoWindow.addListener('position_changed', function() {
+        generateInfoWindowContent(
+          infoWindow = appInfoWindow,
+          marker = currentMarker
+        );
+      });
+    }
 
 /**
  * @function createMarker
  * @param {Object} location
  * @param {string} location.title - The name of the location.
- * @param {Object} location.position - a LatLng object or
- * LatLngLiteral representing a point in geographical coordinates.
+ * @param {Object} location.position - a LatLng object or LatLngLiteral
+ * representing a point in geographical coordinates.
  * @returns {Object} marker
  * @description Creates a new Marker object from a location.
  */
