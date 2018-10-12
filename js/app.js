@@ -21,17 +21,15 @@ class Location {
     this.isVisible = ko.observable(true);
 
     this.listItemOver = function(){
-      highlightMarker(this.marker);
+      google.maps.event.trigger(this.marker, 'mouseover');
     };
 
     this.listItemOut = function(){
-      unhighlightMarker(this.marker);
+      google.maps.event.trigger(this.marker, 'mouseout');
     };
 
     this.listItemClick = function(){
-      currentMarker = this.marker;
-      singleBounceAnimation(this.marker);
-      appInfoWindow.open(map, this.marker)
+      google.maps.event.trigger(this.marker, 'click');
     };
   }
 }

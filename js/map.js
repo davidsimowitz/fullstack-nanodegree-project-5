@@ -175,6 +175,8 @@ var setMarkerMouseoutEvents = function(marker) {
  */
 var setMarkerClickEvents = function(marker) {
   marker.addListener('click', function() {
+    currentMarker = this;
+    appInfoWindow.open(map, this);
     singleBounceAnimation(this);
   });
 }
