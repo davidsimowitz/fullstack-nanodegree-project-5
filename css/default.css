@@ -17,16 +17,34 @@ body {
 }
 
 #locations {
+  align-items: flex-start;
   background-color: hsl(261, 94%, 96%);
   display: flex;
+  flex-direction: column;
   height: 100%;
   overflow: hidden;
   color: hsl(261, 94%, 18%);
   width: 100%;
 }
 
+.interface-container {
+  display: flex;
+  height: 50px;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.interface-wrapper {
+  background-color: hsl(261, 94%, 50%);
+  display: flex;
+  height: 50px;
+  justify-content: flex-start;
+  padding: 5px;
+  width: 100%;
+}
+
 .location-container {
-  height: 100%;
+  height: calc(100% - 50px);
   justify-content: start;
   overflow-y: scroll;
   width: 100%;

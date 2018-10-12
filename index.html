@@ -9,6 +9,10 @@
 
   <body>
     <div id="locations" data-bind="with: locationsList">
+      <section class="interface-container">
+        <section class="interface-wrapper">
+        </section>
+      </section>
       <section class="location-container" data-bind="foreach: locations">
         <section class="location-wrapper" data-bind="event: { mouseover: listItemOver, mouseout: listItemOut, click: listItemClick }">
           <h4 class="location-title" data-bind="text: marker.title, attr: { title: marker.title }"></h4>
