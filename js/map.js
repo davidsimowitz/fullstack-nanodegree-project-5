@@ -104,6 +104,10 @@ var setInfoWindowEvents =
           marker = currentMarker,
         );
       });
+      // Unselect marker when closing infoWindow.
+      infoWindow.addListener('closeclick', function() {
+        google.maps.event.trigger(currentMarker, 'click');
+      });
     }
 
 /**
@@ -141,9 +145,9 @@ var addMarkerToApp = function(marker) {
  * @description Set default events to Marker object.
  */
 var setMarkerEvents = function(marker) {
-  setMarkerMouseoverEvents(marker);
-  setMarkerMouseoutEvents(marker);
-  setMarkerClickEvents(marker);
+  let mouseoverListener = setMarkerMouseoverEvents(marker);
+  let mouseoutListener = setMarkerMouseoutEvents(marker);
+  setMarkerClickEvents(marker, mouseoverListener, mouseoutListener);
 }
 
 /**
@@ -152,7 +156,7 @@ var setMarkerEvents = function(marker) {
  * @description Add default mouseover events to Marker object.
  */
 var setMarkerMouseoverEvents = function(marker) {
-  marker.addListener('mouseover', function() {
+  return google.maps.event.addListener(marker, 'mouseover', function() {
     highlightMarker(this);
   });
 }
@@ -163,7 +167,7 @@ var setMarkerMouseoverEvents = function(marker) {
  * @description Add default mouseout events to Marker object.
  */
 var setMarkerMouseoutEvents = function(marker) {
-  marker.addListener('mouseout', function() {
+  return google.maps.event.addListener(marker, 'mouseout', function() {
     unhighlightMarker(this);
   });
 }
@@ -173,12 +177,35 @@ var setMarkerMouseoutEvents = function(marker) {
  * @param {Object} marker
  * @description Add default click events to Marker object.
  */
-var setMarkerClickEvents = function(marker) {
-  marker.addListener('click', function() {
-    currentMarker = this;
-    appInfoWindow.open(map, this);
-    singleBounceAnimation(this);
-    highlightMarker(marker, color = hsl(h = 293));
+var setMarkerClickEvents = function(marker, mouseoverListener, mouseoutListener) {
+  let selected = false;
+  let mouseover = mouseoverListener;
+  let mouseout = mouseoutListener;
+
+  google.maps.event.addListener(marker, 'click', function() {
+    // Unselect any selected marker.
+    if (currentMarker && currentMarker != marker) {
+      google.maps.event.trigger(currentMarker, 'click');
+    }
+    // Toggle selected state.
+    selected = selected ? false : true;
+
+    if (selected) {
+      // Set marker to selected state.
+      currentMarker = this;
+      google.maps.event.removeListener(mouseover);
+      google.maps.event.removeListener(mouseout);
+      appInfoWindow.open(map, this);
+      singleBounceAnimation(this);
+      highlightMarker(marker, color = hsl(h = 293));
+    } else {
+      // Restore marker to unselected state.
+      currentMarker = null;
+      appInfoWindow.close();
+      unhighlightMarker(this);
+      mouseover = setMarkerMouseoverEvents(this);
+      mouseout = setMarkerMouseoutEvents(this);
+    }
   });
 }
 
@@ -212,7 +239,9 @@ var unhighlightMarker =
  */
 var singleBounceAnimation = function(marker) {
   marker.setAnimation(google.maps.Animation.BOUNCE);
-  marker.setAnimation(null);
+  window.setTimeout(function() {
+    marker.setAnimation(null);
+  }, 500);
 }
 
 /**
