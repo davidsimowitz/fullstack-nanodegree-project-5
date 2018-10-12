@@ -178,6 +178,7 @@ var setMarkerClickEvents = function(marker) {
     currentMarker = this;
     appInfoWindow.open(map, this);
     singleBounceAnimation(this);
+    highlightMarker(marker, color = hsl(h = 293));
   });
 }
 
