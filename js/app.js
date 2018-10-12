@@ -2,11 +2,14 @@
  * @file Implement App's location list menu functionality.
  */
 
-var map;
-var appInfoWindow;
-var markers = [];
-var currentMarker;
-var startLocationProcessing = ko.observable(false);
+ // Invoke strict mode syntax.
+'use strict';
+
+let map;
+let appInfoWindow;
+let currentMarker;
+const markers = [];
+const startLocationProcessing = ko.observable(false);
 
 /**
  * @class Location
@@ -37,7 +40,7 @@ class Location {
 /**
  * @class LocationsList
  */
-var LocationsList = function() {
+const LocationsList = function() {
   this.open = ko.observable(true);
   this.locations = ko.observableArray([]);
 
@@ -53,8 +56,8 @@ var LocationsList = function() {
 /**
  * @class AppViewModel
  */
-var AppViewModel = function() {
-  var self = this;
+const AppViewModel = function() {
+  const self = this;
 
   self.locationsList = ko.observable(new LocationsList());
 

@@ -3,7 +3,10 @@
  * Google Maps API.
  */
 
-var iconPath = 'M0.5,13.031c0,9.114,7.443,12.911,10.177,21.342c2.05,6.321,' +
+ // Invoke strict mode syntax.
+'use strict';
+
+const iconPath = 'M0.5,13.031c0,9.114,7.443,12.911,10.177,21.342c2.05,6.321,' +
     '1.199,7.704,2.517,7.704c1.189,0,0.983-2.251,2.799-8.16c2.925-9.512,' +
     '9.949-12.452,9.949-20.658C25.942,7.49,21.903,0.5,13.107,0.5C4.011,' +
     '0.5,0.5,7.943,0.5,13.031z';
@@ -16,7 +19,7 @@ var iconPath = 'M0.5,13.031c0,9.114,7.443,12.911,10.177,21.342c2.05,6.321,' +
  * @returns {string} color in HSL format
  * @description Creates a new color using the HSL color format parameters.
  */
-var hsl = function(h = 233, s = 94, l = 50) {
+const hsl = function(h = 233, s = 94, l = 50) {
   return 'hsl(' + h + ', ' + s + '%, ' + l + '%)';
 }
 
@@ -30,8 +33,8 @@ var hsl = function(h = 233, s = 94, l = 50) {
  * @description Creates a new Marker object from a location and sets it to the
  * default settings for the App.
  */
-var createAppMarker = function(location) {
-  var marker = createMarker(location);
+const createAppMarker = function(location) {
+  const marker = createMarker(location);
   setMarkerEvents(marker);
   addMarkerToApp(marker);
   return marker;
@@ -44,7 +47,7 @@ var createAppMarker = function(location) {
  * @description Creates a new icon to be set to a marker object. The icon's
  * fill color will be determined by the supplied HSL color format parameters.
  */
-var createIcon = function(color = hsl(h = 233, s = 94, l = 50)) {
+const createIcon = function(color = hsl(h = 233, s = 94, l = 50)) {
   return {
     anchor: new google.maps.Point(13, 42),
     fillColor: color,
@@ -59,7 +62,7 @@ var createIcon = function(color = hsl(h = 233, s = 94, l = 50)) {
  * @description Initializes the App's InfoWindow object and sets it to the
  * default settings.
  */
-var initAppInfoWindow = function() {
+const initAppInfoWindow = function() {
   appInfoWindow = createInfoWindow();
   setInfoWindowEvents();
 }
@@ -71,7 +74,7 @@ var initAppInfoWindow = function() {
  * @returns {Object} infoWindow
  * @description Creates a new InfoWindow object.
  */
-var createInfoWindow = function(infoWindowContent = '') {
+const createInfoWindow = function(infoWindowContent = '') {
   return new google.maps.InfoWindow({
     content: infoWindowContent,
   });
@@ -84,9 +87,9 @@ var createInfoWindow = function(infoWindowContent = '') {
  * @description Set the content on the infoWindow to that of the information
  * associated with the marker parameter.
  */
-var generateInfoWindowContent =
+const generateInfoWindowContent =
   function(infoWindow = appInfoWindow, marker = currentMarker) {
-    let infoWindowContent = marker.title;
+    const infoWindowContent = marker.title;
     infoWindow.setContent(infoWindowContent);
   }
 
@@ -96,7 +99,7 @@ var generateInfoWindowContent =
  * @param {Object} marker
  * @description Set default events to InfoWindow object.
  */
-var setInfoWindowEvents =
+const setInfoWindowEvents =
     function(infoWindow = appInfoWindow, marker = currentMarker) {
       infoWindow.addListener('position_changed', function() {
         generateInfoWindowContent(
@@ -120,7 +123,7 @@ var setInfoWindowEvents =
  * @returns {Object} marker
  * @description Creates a new Marker object from a location.
  */
-var createMarker = function(location, color = hsl(h = 233, s = 94, l = 50)) {
+const createMarker = function(location, color = hsl(233, 94, 50)) {
   return new google.maps.Marker({
     animation: google.maps.Animation.DROP,
     icon: createIcon(color),
@@ -134,7 +137,7 @@ var createMarker = function(location, color = hsl(h = 233, s = 94, l = 50)) {
  * @param {Object} marker
  * @description Adds a Marker object to the App.
  */
-var addMarkerToApp = function(marker) {
+const addMarkerToApp = function(marker) {
   markers.push(marker);
   marker.setMap(map);
 }
@@ -144,9 +147,9 @@ var addMarkerToApp = function(marker) {
  * @param {Object} marker
  * @description Set default events to Marker object.
  */
-var setMarkerEvents = function(marker) {
-  let mouseoverListener = setMarkerMouseoverEvents(marker);
-  let mouseoutListener = setMarkerMouseoutEvents(marker);
+const setMarkerEvents = function(marker) {
+  const mouseoverListener = setMarkerMouseoverEvents(marker);
+  const mouseoutListener = setMarkerMouseoutEvents(marker);
   setMarkerClickEvents(marker, mouseoverListener, mouseoutListener);
 }
 
@@ -155,7 +158,7 @@ var setMarkerEvents = function(marker) {
  * @param {Object} marker
  * @description Add default mouseover events to Marker object.
  */
-var setMarkerMouseoverEvents = function(marker) {
+const setMarkerMouseoverEvents = function(marker) {
   return google.maps.event.addListener(marker, 'mouseover', function() {
     highlightMarker(this);
   });
@@ -166,7 +169,7 @@ var setMarkerMouseoverEvents = function(marker) {
  * @param {Object} marker
  * @description Add default mouseout events to Marker object.
  */
-var setMarkerMouseoutEvents = function(marker) {
+const setMarkerMouseoutEvents = function(marker) {
   return google.maps.event.addListener(marker, 'mouseout', function() {
     unhighlightMarker(this);
   });
@@ -177,37 +180,38 @@ var setMarkerMouseoutEvents = function(marker) {
  * @param {Object} marker
  * @description Add default click events to Marker object.
  */
-var setMarkerClickEvents = function(marker, mouseoverListener, mouseoutListener) {
-  let selected = false;
-  let mouseover = mouseoverListener;
-  let mouseout = mouseoutListener;
+const setMarkerClickEvents =
+    function(marker, mouseoverListener, mouseoutListener) {
+      let selected = false;
+      let mouseover = mouseoverListener;
+      let mouseout = mouseoutListener;
 
-  google.maps.event.addListener(marker, 'click', function() {
-    // Unselect any selected marker.
-    if (currentMarker && currentMarker != marker) {
-      google.maps.event.trigger(currentMarker, 'click');
-    }
-    // Toggle selected state.
-    selected = selected ? false : true;
+      google.maps.event.addListener(marker, 'click', function() {
+        // Unselect any selected marker.
+        if (currentMarker && currentMarker != marker) {
+          google.maps.event.trigger(currentMarker, 'click');
+        }
+        // Toggle selected state.
+        selected = selected ? false : true;
 
-    if (selected) {
-      // Set marker to selected state.
-      currentMarker = this;
-      google.maps.event.removeListener(mouseover);
-      google.maps.event.removeListener(mouseout);
-      appInfoWindow.open(map, this);
-      singleBounceAnimation(this);
-      highlightMarker(marker, color = hsl(h = 293));
-    } else {
-      // Restore marker to unselected state.
-      currentMarker = null;
-      appInfoWindow.close();
-      unhighlightMarker(this);
-      mouseover = setMarkerMouseoverEvents(this);
-      mouseout = setMarkerMouseoutEvents(this);
+        if (selected) {
+          // Set marker to selected state.
+          currentMarker = this;
+          google.maps.event.removeListener(mouseover);
+          google.maps.event.removeListener(mouseout);
+          appInfoWindow.open(map, this);
+          singleBounceAnimation(this);
+          highlightMarker(marker, hsl(293, 94, 50));
+        } else {
+          // Restore marker to unselected state.
+          currentMarker = null;
+          appInfoWindow.close();
+          unhighlightMarker(this);
+          mouseover = setMarkerMouseoverEvents(this);
+          mouseout = setMarkerMouseoutEvents(this);
+        }
+      });
     }
-  });
-}
 
 /**
  * @function highlightMarker
@@ -215,8 +219,8 @@ var setMarkerClickEvents = function(marker, mouseoverListener, mouseoutListener)
  * @param {string} color - The fill color in HSL format.
  * @description Change Icon color.
  */
-var highlightMarker =
-    function(marker, color = hsl(h = 272, s = 94, l = 50)) {
+const highlightMarker =
+    function(marker, color = hsl(272, 94, 50)) {
       marker.setIcon(createIcon(color));
     }
 
@@ -226,8 +230,8 @@ var highlightMarker =
  * @param {string} color - The fill color in HSL format.
  * @description Restore Icon color.
  */
-var unhighlightMarker =
-    function(marker, color = hsl(h = 233, s = 94, l = 50)) {
+const unhighlightMarker =
+    function(marker, color = hsl(233, 94, 50)) {
       marker.setIcon(createIcon(color));
     }
 
@@ -237,7 +241,7 @@ var unhighlightMarker =
  * @description Add a single bounce animation to Marker
  * object.
  */
-var singleBounceAnimation = function(marker) {
+const singleBounceAnimation = function(marker) {
   marker.setAnimation(google.maps.Animation.BOUNCE);
   window.setTimeout(function() {
     marker.setAnimation(null);
@@ -248,9 +252,9 @@ var singleBounceAnimation = function(marker) {
  * @function resizeMapBounds
  * @description Sets map bounds to include visible markers.
  */
-var resizeMapBounds = function() {
-  var bounds = new google.maps.LatLngBounds();
-  var anyVisibleMarkers = false;
+const resizeMapBounds = function() {
+  const bounds = new google.maps.LatLngBounds();
+  let anyVisibleMarkers = false;
 
   markers.forEach(function(marker) {
     if (marker.getVisible()) {
