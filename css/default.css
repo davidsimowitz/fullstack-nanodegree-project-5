@@ -64,12 +64,15 @@ body {
 #locations-filter-clear {
   background-color: hsl(261, 22%, 84%);
   color: hsl(261, 94%, 22%);
-  border-radius: 15px;
+  border-radius: 50%;
   font-size: 18px;
+  font-weight: bold;
   height: 30px;
   margin: 0 0 0 1vw;
-  padding: 0 10px 0 10px;
+  padding: 0 0 2px 0;
   white-space: pre-wrap;
+  text-align: center;
+  width: 30px;
 }
 
 #locations-filter-clear:hover {
