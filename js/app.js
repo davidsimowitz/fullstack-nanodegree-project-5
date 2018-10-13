@@ -42,6 +42,7 @@ class Location {
  */
 const LocationsList = function() {
   this.open = ko.observable(true);
+  this.filter = ko.observable('');
   this.locations = ko.observableArray([]);
 
   this.mapDimensions = ko.pureComputed(function() {

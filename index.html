@@ -11,6 +11,7 @@
     <div id="locations" data-bind="with: locationsList">
       <section class="interface-container">
         <section class="interface-wrapper">
+          <input id="locations-filter-input" type="text" size="19" placeholder="Search locations here." data-bind="value: filter">
         </section>
       </section>
       <section class="location-container" data-bind="foreach: locations">
