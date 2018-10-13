@@ -62,17 +62,19 @@ class Location {
  * @class LocationsList
  */
 const LocationsList = function() {
-  this.open = ko.observable(true);
-  this.filter = ko.observable('');
-  this.locations = ko.observableArray([]);
+  const self = this;
 
-  this.mapDimensions = ko.pureComputed(function() {
-    return this.open() ? "windowed" : "fullscreen";
-  }, this);
+  self.open = ko.observable(true);
+  self.filter = ko.observable('');
+  self.locations = ko.observableArray([]);
 
-  this.menuButtonPosition = ko.pureComputed(function() {
-    return this.open() ? "opened" : "closed";
-  }, this);
+  self.mapDimensions = ko.pureComputed(function() {
+    return self.open() ? "windowed" : "fullscreen";
+  }, self);
+
+  self.menuButtonPosition = ko.pureComputed(function() {
+    return self.open() ? "opened" : "closed";
+  }, self);
 }
 
 /**
