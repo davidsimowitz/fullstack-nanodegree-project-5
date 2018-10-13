@@ -20,8 +20,15 @@ const startLocationProcessing = ko.observable(false);
  */
 class Location {
   constructor(location) {
+    const self = this;
+
     this.marker = createAppMarker(location);
     this.isVisible = ko.observable(true);
+    this.isSelected = ko.observable(false);
+
+    google.maps.event.addListener(this.marker, 'click', function() {
+      self.toggleSelection();
+    });
 
     this.show = function() {
       this.isVisible(true);
@@ -43,6 +50,10 @@ class Location {
 
     this.listItemClick = function(){
       google.maps.event.trigger(this.marker, 'click');
+    };
+
+    this.toggleSelection = function() {
+      this.isSelected(this.isSelected() ? false : true);
     };
   }
 }

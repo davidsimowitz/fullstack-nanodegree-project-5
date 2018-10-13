@@ -101,6 +101,7 @@ body {
   width: 100%;
 }
 
+.selected,
 .location-wrapper:hover {
   background-color: hsl(261, 94%, 94%);
   box-shadow: inset 0 1px 0 0 hsl(261, 94%, 88%);
