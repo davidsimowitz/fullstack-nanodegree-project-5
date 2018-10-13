@@ -76,6 +76,15 @@ const AppViewModel = function() {
     self.locationsList().open(self.locationsList().open() ? false : true);
   };
 
+  self.clearFilter = function() {
+    // Reset filter value.
+    self.locationsList().filter('');
+    // Display all locations.
+    ko.utils.arrayForEach(self.locationsList().locations(), function(location){
+      location.show();
+    });
+  };
+
   self.filterLocationList = ko.computed(function() {
     // Remove whitespace and convert to lowercase before matching.
     let searchStr = self.locationsList().filter().toLowerCase().trim();
@@ -84,6 +93,8 @@ const AppViewModel = function() {
       ko.utils.arrayForEach(self.locationsList().locations(), function(location){
         self.includes(location, searchStr) ? location.show() : location.hide();
       });
+    } else {
+      self.clearFilter();
     }
   }, self);
 
