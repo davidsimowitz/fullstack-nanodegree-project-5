@@ -23,6 +23,16 @@ class Location {
     this.marker = createAppMarker(location);
     this.isVisible = ko.observable(true);
 
+    this.show = function() {
+      this.isVisible(true);
+      this.marker.setVisible(true);
+    };
+
+    this.hide = function() {
+      this.isVisible(false);
+      this.marker.setVisible(false);
+    };
+
     this.listItemOver = function(){
       google.maps.event.trigger(this.marker, 'mouseover');
     };
@@ -64,6 +74,21 @@ const AppViewModel = function() {
 
   self.toggleLocationList = function() {
     self.locationsList().open(self.locationsList().open() ? false : true);
+  };
+
+  self.filterLocationList = ko.computed(function() {
+    // Remove whitespace and convert to lowercase before matching.
+    let searchStr = self.locationsList().filter().toLowerCase().trim();
+    if (searchStr != '') {
+      // Display locations that include the search string.
+      ko.utils.arrayForEach(self.locationsList().locations(), function(location){
+        self.includes(location, searchStr) ? location.show() : location.hide();
+      });
+    }
+  }, self);
+
+  self.includes = function(location, str) {
+    return location.marker.title.toLowerCase().includes(str);
   };
 
   self.addLocationToApp = function(location) {
