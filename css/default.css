@@ -56,6 +56,11 @@ body {
   white-space: pre-wrap;
 }
 
+#locations-filter-input:hover,
+#locations-filter-input:active {
+  box-shadow: 2px 2px 4px 2px hsl(261, 96%, 72%);
+}
+
 .location-container {
   height: calc(100% - 50px);
   justify-content: start;
