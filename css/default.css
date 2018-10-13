@@ -61,6 +61,29 @@ body {
   box-shadow: 2px 2px 4px 2px hsl(261, 96%, 72%);
 }
 
+#locations-filter-clear {
+  background-color: hsl(261, 22%, 84%);
+  color: hsl(261, 94%, 22%);
+  border-radius: 15px;
+  font-size: 18px;
+  height: 30px;
+  margin: 0 0 0 1vw;
+  padding: 0 10px 0 10px;
+  white-space: pre-wrap;
+}
+
+#locations-filter-clear:hover {
+  background-color: hsl(261, 22%, 94%);
+  box-shadow: 2px 2px 4px 2px hsl(261, 96%, 58%);
+  color: hsl(261, 94%, 42%);
+}
+
+#locations-filter-clear:active {
+  background-color: hsl(261, 22%, 74%);
+  color: hsl(261, 100%, 12%);
+  box-shadow: 1px 1px 2px 2px hsl(261, 92%, 50%);
+}
+
 .location-container {
   height: calc(100% - 50px);
   justify-content: start;
