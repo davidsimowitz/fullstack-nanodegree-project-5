@@ -22,38 +22,38 @@ class Location {
   constructor(location) {
     const self = this;
 
-    this.marker = createAppMarker(location);
-    this.isVisible = ko.observable(true);
-    this.isSelected = ko.observable(false);
+    self.marker = createAppMarker(location);
+    self.isVisible = ko.observable(true);
+    self.isSelected = ko.observable(false);
 
-    google.maps.event.addListener(this.marker, 'click', function() {
+    google.maps.event.addListener(self.marker, 'click', function() {
       self.toggleSelection();
     });
 
-    this.show = function() {
-      this.isVisible(true);
-      this.marker.setVisible(true);
+    self.show = function() {
+      self.isVisible(true);
+      self.marker.setVisible(true);
     };
 
-    this.hide = function() {
-      this.isVisible(false);
-      this.marker.setVisible(false);
+    self.hide = function() {
+      self.isVisible(false);
+      self.marker.setVisible(false);
     };
 
-    this.listItemOver = function(){
-      google.maps.event.trigger(this.marker, 'mouseover');
+    self.listItemOver = function(){
+      google.maps.event.trigger(self.marker, 'mouseover');
     };
 
-    this.listItemOut = function(){
-      google.maps.event.trigger(this.marker, 'mouseout');
+    self.listItemOut = function(){
+      google.maps.event.trigger(self.marker, 'mouseout');
     };
 
-    this.listItemClick = function(){
-      google.maps.event.trigger(this.marker, 'click');
+    self.listItemClick = function(){
+      google.maps.event.trigger(self.marker, 'click');
     };
 
-    this.toggleSelection = function() {
-      this.isSelected(this.isSelected() ? false : true);
+    self.toggleSelection = function() {
+      self.isSelected(self.isSelected() ? false : true);
     };
   }
 }
