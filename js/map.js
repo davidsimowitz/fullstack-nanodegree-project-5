@@ -132,7 +132,7 @@ const setInfoWindowEvents =
  * @returns {Object} marker
  * @description Creates a new Marker object from a location.
  */
-const createMarker = function(location, color = hsl(233, 94, 50)) {
+const createMarker = function(location, color = hsl(269, 80, 36)) {
   return new google.maps.Marker({
     animation: google.maps.Animation.DROP,
     icon: createIcon(color),
@@ -210,7 +210,7 @@ const setMarkerClickEvents =
           google.maps.event.removeListener(mouseout);
           appInfoWindow.open(map, this);
           singleBounceAnimation(this);
-          highlightMarker(marker, hsl(293, 94, 50));
+          highlightMarker(marker, hsl(264, 92, 82));
         } else {
           // Restore marker to unselected state.
           currentMarker = null;
@@ -229,7 +229,7 @@ const setMarkerClickEvents =
  * @description Change Icon color.
  */
 const highlightMarker =
-    function(marker, color = hsl(272, 94, 50)) {
+    function(marker, color = hsl(271, 80, 66)) {
       marker.setIcon(createIcon(color));
     }
 
@@ -240,7 +240,7 @@ const highlightMarker =
  * @description Restore Icon color.
  */
 const unhighlightMarker =
-    function(marker, color = hsl(233, 94, 50)) {
+    function(marker, color = hsl(269, 80, 36)) {
       marker.setIcon(createIcon(color));
     }
 
