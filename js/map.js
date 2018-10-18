@@ -89,7 +89,16 @@ const createInfoWindow = function(infoWindowContent = '') {
  */
 const generateInfoWindowContent =
   function(infoWindow = appInfoWindow, marker = currentMarker) {
-    const infoWindowContent = marker.title;
+    const details = 'location details'; // TODO
+    const infoWindowContent =
+        '<section class="info-window-wrapper">' +
+          '<section class="info-window-header">' +
+            '<h3 class="info-window-title">' + marker.title + '</h3>' +
+          '</section>' +
+          '<section class="info-window-body">' +
+            '<h5 class="info-window-details">' + details + '</h5>' +
+          '</section>' +
+        '</section>';
     infoWindow.setContent(infoWindowContent);
   }
 
