@@ -62,8 +62,8 @@ const createIcon = function(color = hsl(h = 233, s = 94, l = 50)) {
  * @param {Object} infoWindow
  * @description Sets the marker's InfoWindow object with the default content.
  */
-const setInfoWindow = function(infoWindow, marker) {
-  generateInfoWindowContent(infoWindow, marker);
+const setInfoWindow = function(marker, infoWindow) {
+  generateInfoWindowContent(marker, infoWindow);
 }
 
 /**
@@ -85,7 +85,7 @@ const createInfoWindow = function(infoWindowContent = '') {
  * associated with the marker parameter.
  */
 const generateInfoWindowContent =
-  function(infoWindow, marker) {
+  function(marker, infoWindow) {
     const details = 'location details'; // TODO
     const infoWindowContent =
         '<section class="info-window-wrapper">' +
@@ -106,7 +106,7 @@ const generateInfoWindowContent =
  * @description Set default closeclick events to InfoWindow object.
  */
 const setInfoWindowCloseClickEvents =
-    function(infoWindow, marker) {
+    function(marker, infoWindow) {
       // Unselect marker when closing infoWindow.
       infoWindow.addListener('closeclick', function() {
         google.maps.event.trigger(marker, 'click');
@@ -149,7 +149,7 @@ const addMarkerToApp = function(marker) {
  * @description Set default events to Marker and Info Window objects.
  */
 const setAppEvents = function(marker, infoWindow) {
-  setInfoWindowCloseClickEvents(infoWindow, marker);
+  setInfoWindowCloseClickEvents(marker, infoWindow);
   const mouseoverListener = setMarkerMouseoverEvents(marker);
   const mouseoutListener = setMarkerMouseoutEvents(marker);
   setMarkerClickEvents(marker, infoWindow, mouseoverListener, mouseoutListener);

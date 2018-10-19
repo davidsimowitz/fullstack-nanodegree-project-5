@@ -27,7 +27,7 @@ class Location {
     self.marker = createAppMarker(location);
     self.infoWindow = createInfoWindow();
     setAppEvents(self.marker, self.infoWindow);
-    setInfoWindow(self.infoWindow, self.marker);
+    setInfoWindow(self.marker, self.infoWindow);
 
     google.maps.event.addListener(self.marker, 'click', function() {
       self.toggleSelection();
