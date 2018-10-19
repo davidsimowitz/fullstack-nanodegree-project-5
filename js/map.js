@@ -29,14 +29,12 @@ const hsl = function(h = 233, s = 94, l = 50) {
  * @param {string} location.title - The name of the location.
  * @param {Object} location.position - a LatLng object or LatLngLiteral
  * representing a point in geographical coordinates.
- * @param {Object} infoWindow
  * @returns {Object} marker
  * @description Creates a new Marker object from a location and sets it to the
  * default settings for the App.
  */
-const createAppMarker = function(location, infoWindow) {
+const createAppMarker = function(location) {
   const marker = createMarker(location);
-  setMarkerEvents(marker, infoWindow);
   addMarkerToApp(marker);
   return marker;
 }
@@ -59,21 +57,17 @@ const createIcon = function(color = hsl(h = 233, s = 94, l = 50)) {
 }
 
 /**
- * @function initAppInfoWindow
+ * @function setInfoWindow
  * @param {Object} marker
  * @param {Object} infoWindow
- * @description Initializes the marker's InfoWindow object with the default
- * settings and content.
+ * @description Sets the marker's InfoWindow object with the default content.
  */
-const initAppInfoWindow = function(infoWindow, marker) {
-  setInfoWindowEvents(infoWindow, marker);
+const setInfoWindow = function(infoWindow, marker) {
   generateInfoWindowContent(infoWindow, marker);
 }
 
 /**
  * @function createInfoWindow
- * @param {string} infoWindowContent - content to display in the InfoWindow
- * object written in HTML format.
  * @returns {Object} infoWindow
  * @description Creates a new InfoWindow object.
  */
@@ -106,12 +100,12 @@ const generateInfoWindowContent =
   }
 
 /**
- * @function setInfoWindowEvents
+ * @function setInfoWindowCloseClickEvents
  * @param {Object} infoWindow
  * @param {Object} marker
- * @description Set default events to InfoWindow object.
+ * @description Set default closeclick events to InfoWindow object.
  */
-const setInfoWindowEvents =
+const setInfoWindowCloseClickEvents =
     function(infoWindow, marker) {
       // Unselect marker when closing infoWindow.
       infoWindow.addListener('closeclick', function() {
@@ -149,12 +143,13 @@ const addMarkerToApp = function(marker) {
 }
 
 /**
- * @function setMarkerEvents
+ * @function setAppEvents
  * @param {Object} marker
  * @param {Object} infoWindow
- * @description Set default events to Marker object.
+ * @description Set default events to Marker and Info Window objects.
  */
-const setMarkerEvents = function(marker, infoWindow) {
+const setAppEvents = function(marker, infoWindow) {
+  setInfoWindowCloseClickEvents(infoWindow, marker);
   const mouseoverListener = setMarkerMouseoverEvents(marker);
   const mouseoutListener = setMarkerMouseoutEvents(marker);
   setMarkerClickEvents(marker, infoWindow, mouseoverListener, mouseoutListener);

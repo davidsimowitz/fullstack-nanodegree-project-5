@@ -21,12 +21,13 @@ class Location {
   constructor(location) {
     const self = this;
 
-    self.infoWindow = createInfoWindow();
-    self.marker = createAppMarker(location, self.infoWindow);
     self.isVisible = ko.observable(true);
     self.isSelected = ko.observable(false);
 
-    initAppInfoWindow(self.infoWindow, self.marker);
+    self.marker = createAppMarker(location);
+    self.infoWindow = createInfoWindow();
+    setAppEvents(self.marker, self.infoWindow);
+    setInfoWindow(self.infoWindow, self.marker);
 
     google.maps.event.addListener(self.marker, 'click', function() {
       self.toggleSelection();
