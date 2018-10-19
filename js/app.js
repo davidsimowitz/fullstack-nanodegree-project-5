@@ -6,7 +6,6 @@
 'use strict';
 
 let map;
-let appInfoWindow;
 let currentMarker;
 const markers = [];
 const startLocationProcessing = ko.observable(false);
@@ -22,9 +21,12 @@ class Location {
   constructor(location) {
     const self = this;
 
-    self.marker = createAppMarker(location);
+    self.infoWindow = createInfoWindow();
+    self.marker = createAppMarker(location, self.infoWindow);
     self.isVisible = ko.observable(true);
     self.isSelected = ko.observable(false);
+
+    initAppInfoWindow(self.infoWindow, self.marker);
 
     google.maps.event.addListener(self.marker, 'click', function() {
       self.toggleSelection();
@@ -122,7 +124,6 @@ const AppViewModel = function() {
   self.loadLocations = ko.computed(function() {
     if (startLocationProcessing()) {
       defaultLocations.forEach(self.addLocationToApp);
-      initAppInfoWindow();
       resizeMapBounds();
     }
   }, self);

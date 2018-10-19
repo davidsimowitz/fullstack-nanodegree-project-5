@@ -29,13 +29,14 @@ const hsl = function(h = 233, s = 94, l = 50) {
  * @param {string} location.title - The name of the location.
  * @param {Object} location.position - a LatLng object or LatLngLiteral
  * representing a point in geographical coordinates.
+ * @param {Object} infoWindow
  * @returns {Object} marker
  * @description Creates a new Marker object from a location and sets it to the
  * default settings for the App.
  */
-const createAppMarker = function(location) {
+const createAppMarker = function(location, infoWindow) {
   const marker = createMarker(location);
-  setMarkerEvents(marker);
+  setMarkerEvents(marker, infoWindow);
   addMarkerToApp(marker);
   return marker;
 }
@@ -59,12 +60,14 @@ const createIcon = function(color = hsl(h = 233, s = 94, l = 50)) {
 
 /**
  * @function initAppInfoWindow
- * @description Initializes the App's InfoWindow object and sets it to the
- * default settings.
+ * @param {Object} marker
+ * @param {Object} infoWindow
+ * @description Initializes the marker's InfoWindow object with the default
+ * settings and content.
  */
-const initAppInfoWindow = function() {
-  appInfoWindow = createInfoWindow();
-  setInfoWindowEvents();
+const initAppInfoWindow = function(infoWindow, marker) {
+  setInfoWindowEvents(infoWindow, marker);
+  generateInfoWindowContent(infoWindow, marker);
 }
 
 /**
@@ -88,7 +91,7 @@ const createInfoWindow = function(infoWindowContent = '') {
  * associated with the marker parameter.
  */
 const generateInfoWindowContent =
-  function(infoWindow = appInfoWindow, marker = currentMarker) {
+  function(infoWindow, marker) {
     const details = 'location details'; // TODO
     const infoWindowContent =
         '<section class="info-window-wrapper">' +
@@ -109,16 +112,10 @@ const generateInfoWindowContent =
  * @description Set default events to InfoWindow object.
  */
 const setInfoWindowEvents =
-    function(infoWindow = appInfoWindow, marker = currentMarker) {
-      infoWindow.addListener('position_changed', function() {
-        generateInfoWindowContent(
-          infoWindow = appInfoWindow,
-          marker = currentMarker,
-        );
-      });
+    function(infoWindow, marker) {
       // Unselect marker when closing infoWindow.
       infoWindow.addListener('closeclick', function() {
-        google.maps.event.trigger(currentMarker, 'click');
+        google.maps.event.trigger(marker, 'click');
       });
     }
 
@@ -154,12 +151,13 @@ const addMarkerToApp = function(marker) {
 /**
  * @function setMarkerEvents
  * @param {Object} marker
+ * @param {Object} infoWindow
  * @description Set default events to Marker object.
  */
-const setMarkerEvents = function(marker) {
+const setMarkerEvents = function(marker, infoWindow) {
   const mouseoverListener = setMarkerMouseoverEvents(marker);
   const mouseoutListener = setMarkerMouseoutEvents(marker);
-  setMarkerClickEvents(marker, mouseoverListener, mouseoutListener);
+  setMarkerClickEvents(marker, infoWindow, mouseoverListener, mouseoutListener);
 }
 
 /**
@@ -187,10 +185,11 @@ const setMarkerMouseoutEvents = function(marker) {
 /**
  * @function setMarkerClickEvents
  * @param {Object} marker
+ * @param {Object} infoWindow
  * @description Add default click events to Marker object.
  */
 const setMarkerClickEvents =
-    function(marker, mouseoverListener, mouseoutListener) {
+    function(marker, infoWindow, mouseoverListener, mouseoutListener) {
       let selected = false;
       let mouseover = mouseoverListener;
       let mouseout = mouseoutListener;
@@ -208,13 +207,13 @@ const setMarkerClickEvents =
           currentMarker = this;
           google.maps.event.removeListener(mouseover);
           google.maps.event.removeListener(mouseout);
-          appInfoWindow.open(map, this);
+          infoWindow.open(map, this);
           singleBounceAnimation(this);
           highlightMarker(marker, hsl(264, 92, 82));
         } else {
           // Restore marker to unselected state.
           currentMarker = null;
-          appInfoWindow.close();
+          infoWindow.close();
           unhighlightMarker(this);
           mouseover = setMarkerMouseoverEvents(this);
           mouseout = setMarkerMouseoutEvents(this);
