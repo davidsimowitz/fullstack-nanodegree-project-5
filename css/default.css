@@ -142,10 +142,11 @@ body {
   align-items: flex-start;
   color: hsl(261, 14%, 22%);
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
 }
 
-.info-window-details {
+.info-window-address {
   color: hsl(261, 14%, 42%);
   font-size: 14px;
   text-align: left;

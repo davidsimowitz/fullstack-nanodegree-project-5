@@ -79,25 +79,51 @@ const createInfoWindow = function(infoWindowContent = '') {
 
 /**
  * @function generateInfoWindowContent
- * @param {Object} infoWindow
  * @param {Object} marker
+ * @param {Object} infoWindow
  * @description Set the content on the infoWindow to that of the information
- * associated with the marker parameter.
+ * associated with the marker's corresponding Foursquare venue.
  */
-const generateInfoWindowContent =
-  function(marker, infoWindow) {
-    const details = 'location details'; // TODO
-    const infoWindowContent =
-        '<section class="info-window-wrapper">' +
-          '<section class="info-window-header">' +
-            '<h3 class="info-window-title">' + marker.title + '</h3>' +
-          '</section>' +
-          '<section class="info-window-body">' +
-            '<h5 class="info-window-details">' + details + '</h5>' +
-          '</section>' +
-        '</section>';
-    infoWindow.setContent(infoWindowContent);
-  }
+const generateInfoWindowContent = function(marker, infoWindow) {
+  // Search parameters.
+  const client_id = "ZOWBSDUKA1ZLZ0HS3UUCWDSE1NTEQTE5IV3K4G4GYJ3V0HM4";
+  const client_secret = "QXQA0Y3XU5XATZXHF3XBDOX15HFA0FW10N0N2KY5MHGFFWPT";
+  const latlng = marker.getPosition().lat() + ',' + marker.getPosition().lng();
+
+  // Foursquare API - Match Venue Request
+  const foursquareRequest = new XMLHttpRequest();
+  foursquareRequest.open('GET',
+                         'https://api.foursquare.com/v2/venues/search' +
+                             '?v=20180808&client_id=' + client_id +
+                             '&client_secret=' + client_secret +
+                             '&ll=' + latlng +
+                             '&intent=match' +
+                             '&name=' + marker.getTitle() +
+                             '&limit=1',
+                         true /* async */);
+  foursquareRequest.onload = function() {
+    // Code for handling API response.
+    if (this.status >= 200 && this.status < 400) {
+      // Venue matched.
+      const venue = JSON.parse(this.responseText)['response']['venues'][0];
+      const infoWindowContent =
+          '<section class="info-window-wrapper">' +
+            '<section class="info-window-header">' +
+              '<h3 class="info-window-title">' + marker.getTitle() + '</h3>' +
+            '</section>' +
+            '<section class="info-window-body">' +
+              '<h5 class="info-window-address">' + venue.location.address +
+              ' ' + '(' + venue.location.crossStreet + ')</h5>' +
+              '<h6 class="info-window-address">' + venue.location.city + ', ' +
+                venue.location.state + ' ' + venue.location.postalCode +
+              '</h6>' +
+            '</section>' +
+          '</section>';
+      infoWindow.setContent(infoWindowContent);
+    }
+  };
+  foursquareRequest.send();
+}
 
 /**
  * @function setInfoWindowCloseClickEvents
