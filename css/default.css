@@ -44,6 +44,30 @@ body {
   width: 100%;
 }
 
+.footer-container {
+  display: flex;
+  height: auto;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.footer-wrapper {
+  align-items: center;
+  display: flex;
+  height: auto;
+  justify-content: flex-start;
+  padding: 8px 1vw 0 1vw;
+  width: 100%;
+}
+
+.foursquare-legal-statement {
+  color: hsl(261, 14%, 48%);
+  border-top: 2px solid hsl(261, 24%, 70%);
+  font-size: 10px;
+  padding: 6px 1vw 6px 1vw;
+  text-align: justify;
+}
+
 #locations-filter-input {
   background-color: hsl(261, 100%, 100%);
   color: hsl(261, 94%, 22%);
@@ -231,6 +255,10 @@ body {
     width: 82vw;
   }
 
+  .footer-wrapper {
+    width: 82vw;
+  }
+
   #map {
     height: 100%;
   }
@@ -258,6 +286,10 @@ body {
 @media screen and (min-width: 376px) and (max-width: 600px) {
   @media screen and (orientation: landscape) {
     .location-wrapper {
+      width: 70vw;
+    }
+
+    .footer-wrapper {
       width: 70vw;
     }
 
@@ -330,6 +362,10 @@ body {
       width: 425px;
     }
 
+    .footer-wrapper {
+      width: 425px;
+    }
+
     #map {
       height: 100%;
     }
@@ -395,6 +431,10 @@ body {
 
 @media screen and (min-width: 851px) {
   .location-wrapper {
+    width: 450px;
+  }
+
+  .footer-wrapper {
     width: 450px;
   }
 
