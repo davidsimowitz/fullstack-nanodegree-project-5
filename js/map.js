@@ -112,11 +112,17 @@ const generateInfoWindowContent = function(marker, infoWindow) {
               '<h3 class="info-window-title">' + marker.getTitle() + '</h3>' +
             '</section>' +
             '<section class="info-window-body">' +
-              '<h5 class="info-window-address">' + venue.location.address +
-              ' ' + '(' + venue.location.crossStreet + ')</h5>' +
+              '<h4 class="info-window-address">' + venue.location.address +
+              '</h4>' + '<h5 class="info-window-address">(' +
+              venue.location.crossStreet + ')</h5>' +
               '<h6 class="info-window-address">' + venue.location.city + ', ' +
                 venue.location.state + ' ' + venue.location.postalCode +
               '</h6>' +
+            '</section>' +
+            '<section class="info-window-footer">' +
+              '<img class="info-window-foursquare-logo" ' +
+                  'src="img/Powered-by-Foursquare-one-color-300.png" ' +
+                  'alt="Powered by Foursquare">' +
             '</section>' +
           '</section>';
       infoWindow.setContent(infoWindowContent);

@@ -140,10 +140,28 @@ body {
 
 .info-window-body {
   align-items: flex-start;
+  border: 2px solid hsl(261, 14%, 88%);
+  border-bottom: none;
   color: hsl(261, 14%, 22%);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin: 12px 0 0 0;
+  padding: 12px 10px 0 10px;
+}
+
+.info-window-footer {
+  align-items: flex-end;
+  border: 2px solid hsl(261, 14%, 88%);
+  border-top: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.info-window-foursquare-logo {
+  margin: 12px 0 0 0;
+  width: 200px;
 }
 
 .info-window-address {
