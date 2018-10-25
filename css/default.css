@@ -194,6 +194,12 @@ body {
   text-align: left;
 }
 
+.info-window-error {
+  color: hsl(261, 14%, 68%);
+  font-size: 12px;
+  text-align: left;
+}
+
 #map {
   position: absolute;
   right: 0;

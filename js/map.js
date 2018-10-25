@@ -126,7 +126,45 @@ const generateInfoWindowContent = function(marker, infoWindow) {
             '</section>' +
           '</section>';
       infoWindow.setContent(infoWindowContent);
+    } else {
+      // Encountered server error.
+      const infoWindowContent =
+          '<section class="info-window-wrapper">' +
+            '<section class="info-window-header">' +
+              '<h3 class="info-window-title">' + marker.getTitle() + '</h3>' +
+            '</section>' +
+            '<section class="info-window-body">' +
+              '<h4 class="info-window-error">' +
+                'our apologies, Foursquare® is currently unavailable</h4>' +
+            '</section>' +
+            '<section class="info-window-footer">' +
+              '<img class="info-window-foursquare-logo" ' +
+                  'src="img/Powered-by-Foursquare-one-color-300.png" ' +
+                  'alt="Powered by Foursquare">' +
+            '</section>' +
+          '</section>';
+      infoWindow.setContent(infoWindowContent);
     }
+  };
+  foursquareRequest.onerror = function() {
+    // XMLHttpRequest transaction failed.
+    const infoWindowContent =
+          '<section class="info-window-wrapper">' +
+            '<section class="info-window-header">' +
+              '<h3 class="info-window-title">' + marker.getTitle() + '</h3>' +
+            '</section>' +
+            '<section class="info-window-body">' +
+              '<h4 class="info-window-error">' +
+                'sorry for the inconvenience, ' +
+                'this feature is currently unavailable</h4>' +
+            '</section>' +
+            '<section class="info-window-footer">' +
+              '<img class="info-window-foursquare-logo" ' +
+                  'src="img/Powered-by-Foursquare-one-color-300.png" ' +
+                  'alt="Powered by Foursquare">' +
+            '</section>' +
+          '</section>';
+      infoWindow.setContent(infoWindowContent);
   };
   foursquareRequest.send();
 }
