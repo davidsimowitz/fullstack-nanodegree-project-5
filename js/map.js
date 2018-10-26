@@ -1,6 +1,5 @@
 /**
- * @file Functions to implement and modify the map through
- * Google Maps API.
+ * @file Functions to implement and modify the map through Google Maps API.
  */
 
  // Invoke strict mode syntax.
@@ -68,6 +67,7 @@ const setInfoWindow = function(marker, infoWindow) {
 
 /**
  * @function createInfoWindow
+ * @param {string} infoWindowContent
  * @returns {Object} infoWindow
  * @description Creates a new InfoWindow object.
  */
@@ -226,8 +226,8 @@ const generateInfoWindowContent = function(marker, infoWindow) {
 
 /**
  * @function setInfoWindowCloseClickEvents
- * @param {Object} infoWindow
  * @param {Object} marker
+ * @param {Object} infoWindow
  * @description Set default closeclick events to InfoWindow object.
  */
 const setInfoWindowCloseClickEvents =
@@ -283,6 +283,7 @@ const setAppEvents = function(marker, infoWindow) {
 /**
  * @function setMarkerMouseoverEvents
  * @param {Object} marker
+ * @returns {listener} mouseover listener
  * @description Add default mouseover events to Marker object.
  */
 const setMarkerMouseoverEvents = function(marker) {
@@ -294,6 +295,7 @@ const setMarkerMouseoverEvents = function(marker) {
 /**
  * @function setMarkerMouseoutEvents
  * @param {Object} marker
+ * @returns {listener} mouseout listener
  * @description Add default mouseout events to Marker object.
  */
 const setMarkerMouseoutEvents = function(marker) {
@@ -306,6 +308,8 @@ const setMarkerMouseoutEvents = function(marker) {
  * @function setMarkerClickEvents
  * @param {Object} marker
  * @param {Object} infoWindow
+ * @param {listener} mouseoverListener
+ * @param {listener} mouseoutListener
  * @description Add default click events to Marker object.
  */
 const setMarkerClickEvents =
@@ -366,8 +370,7 @@ const unhighlightMarker =
 /**
  * @function singleBounceAnimation
  * @param {Object} marker
- * @description Add a single bounce animation to Marker
- * object.
+ * @description Add a single bounce animation to Marker object.
  */
 const singleBounceAnimation = function(marker) {
   marker.setAnimation(google.maps.Animation.BOUNCE);
