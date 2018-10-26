@@ -6,7 +6,7 @@ Udacity - Full Stack Web Developer Nanodegree
 ---------------------------------------------
 P5: Neighborhood Map Application
 
-A single-page, responsive map application with components usable across modern desktop, tablet, and phone browsers.
+A single-page, responsive map application with components usable across modern desktop, tablet, and phone browsers. Functionality allows the user to view and filter through a list of pre-selected neighborhood restaurants. Details pertaining to the restaurants—such as its address and cross street on the map—will be available through Foursquare® to the user when selecting a restaurant.
 
 
 Requirements
@@ -43,3 +43,7 @@ $ cd fullstack-nanodegree-project-5
 ```bash
 $ fullstack-nanodegree-project-5/index.html
 ```
+
+Third-Party API
+---------------
++ This application uses the Foursquare® application programming interface but is not endorsed or certified by Foursquare Labs, Inc. All of the Foursquare® logos (including all badges) and trademarks displayed on this application are the property of Foursquare Labs, Inc.
