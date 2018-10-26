@@ -214,6 +214,7 @@ body {
 }
 
 #menu-button {
+  opacity: 0.5;
   position: absolute;
   text-shadow: 1px 1px 0 hsl(261, 50%, 79%),
                1px -1px 0 hsl(261, 50%, 79%),
@@ -224,6 +225,7 @@ body {
 
 #menu-button:hover {
   color: hsla(261, 94%, 50%, 1);
+  opacity: 0.9;
 }
 
 .opened {
