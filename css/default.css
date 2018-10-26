@@ -227,11 +227,10 @@ body {
 }
 
 .opened {
-  transform: rotate(0.5turn) scale(.8, 1) translate(0, -8px);
+  transform: rotate(0.5turn) translate(0, -8px);
 }
 
 .closed {
-  transform: scale(.8, 1);
 }
 
 @media screen and (max-width: 300px) {
@@ -277,7 +276,7 @@ body {
   }
 
   #menu-button {
-    font-size: 45px;
+    font-size: 60px;
     top: 80px;
   }
 
@@ -311,7 +310,7 @@ body {
     }
 
     #menu-button {
-      font-size: 50px;
+      font-size: 75px;
       top: 80px;
     }
 
@@ -346,21 +345,21 @@ body {
     }
 
     #menu-button {
-      font-size: 55px;
+      font-size: 80px;
     }
 
     .opened {
       color: hsla(261, 94%, 50%, .85);
       bottom: calc(45px + 70vh);
       left: 35px;
-      transform: rotate(0.25turn) scale(.8, 1) translate(0, -8px);
+      transform: rotate(0.25turn) translate(0, -8px);
     }
 
     .closed {
       color: hsla(261, 94%, 50%, .8);
       left: 35px;
       bottom: 45px;
-      transform: rotate(-0.25turn) scale(.8, 1);
+      transform: rotate(-0.25turn);
     }
   }
 }
@@ -384,7 +383,7 @@ body {
     }
 
     #menu-button {
-      font-size: 55px;
+      font-size: 85px;
       top: 80px;
     }
 
@@ -419,21 +418,21 @@ body {
     }
 
     #menu-button {
-      font-size: 68px;
+      font-size: 102px;
     }
 
     .opened {
       color: hsla(261, 94%, 50%, .8);
       bottom: calc(50px + 60vh);
       left: 45px;
-      transform: rotate(0.25turn) scale(.8, 1) translate(0, -8px);
+      transform: rotate(0.25turn) translate(0, -8px);
     }
 
     .closed {
       color: hsla(261, 94%, 50%, .75);
       left: 45px;
       bottom: 50px;
-      transform: rotate(-0.25turn) scale(.8, 1);
+      transform: rotate(-0.25turn);
     }
   }
 }
@@ -456,7 +455,7 @@ body {
   }
 
   #menu-button {
-    font-size: 68px;
+    font-size: 102px;
     top: 80px;
   }
 
