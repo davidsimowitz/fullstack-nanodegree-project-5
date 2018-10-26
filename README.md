@@ -25,10 +25,9 @@ $ git clone https://github.com/davidsimowitz/fullstack-nanodegree-project-5.git
   + Alternatively you may download the files into the directory.
 
 * Enter the project directory.
-
-```bash
-$ cd fullstack-nanodegree-project-5
-```
+  ```bash
+  $ cd fullstack-nanodegree-project-5
+  ```
   + Verify the following files/folders are present before continuing:
     * css
     * img
