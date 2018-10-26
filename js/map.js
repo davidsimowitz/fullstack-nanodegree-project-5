@@ -277,7 +277,12 @@ const setAppEvents = function(marker, infoWindow) {
   setInfoWindowCloseClickEvents(marker, infoWindow);
   const mouseoverListener = setMarkerMouseoverEvents(marker);
   const mouseoutListener = setMarkerMouseoutEvents(marker);
-  setMarkerClickEvents(marker, infoWindow, mouseoverListener, mouseoutListener);
+  setMarkerClickEvents(
+      marker,
+      infoWindow,
+      mouseoverListener,
+      mouseoutListener,
+  );
 }
 
 /**
