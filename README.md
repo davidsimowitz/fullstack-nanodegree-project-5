@@ -36,6 +36,13 @@ $ cd fullstack-nanodegree-project-5
     * js
     * README.md
 
+* Update Client ID and Client Secret to prevent 'quota-exceeded' errors:
+  + Update the 'client_id' and 'client_secret' values on lines 84–85 of the map.js file.
+  ```bash
+  $ fullstack-nanodegree-project-5/js/map.js
+  ```
+  + New values can be obtained by setting up an account through [Foursquare® Developers](https://foursquare.com/developers/apps).
+
 * Connect to the frontend:
 
   + Connect to the application using your web browser.
@@ -47,3 +54,5 @@ $ fullstack-nanodegree-project-5/index.html
 Third-Party API
 ---------------
 + This application uses the Foursquare® application programming interface but is not endorsed or certified by Foursquare Labs, Inc. All of the Foursquare® logos (including all badges) and trademarks displayed on this application are the property of Foursquare Labs, Inc.
+
++ This application uses a Sandbox Account. In other words, this application has a hourly/daily/monthly rate limit to the Foursquare® API endpoints. After the limit if reached the application will receive a 'quota_exceeded' error until the limit is reset.
