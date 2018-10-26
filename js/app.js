@@ -10,6 +10,12 @@ let currentMarker;
 const markers = [];
 const startLocationProcessing = ko.observable(false);
 
+// SVG path used for the shape of the Marker's icon.
+const iconPath = 'M0.5,13.031c0,9.114,7.443,12.911,10.177,21.342c2.05,6.321,' +
+    '1.199,7.704,2.517,7.704c1.189,0,0.983-2.251,2.799-8.16c2.925-9.512,' +
+    '9.949-12.452,9.949-20.658C25.942,7.49,21.903,0.5,13.107,0.5C4.011,' +
+    '0.5,0.5,7.943,0.5,13.031z';
+
 /**
  * @class Location
  * @param {Object} location
