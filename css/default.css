@@ -137,7 +137,7 @@ body {
 }
 
 .location-title {
-  font-size: 24px;
+  font-size: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -147,22 +147,20 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-height: 350px;
-  max-width: 400px;
-  min-height: 12.5vh;
-  min-width: 12.5vw;
+  margin: 0;
+  max-width: 200px;
+  padding: 0;
 }
 
 .info-window-header {
   align-items: flex-start;
   display: flex;
   justify-content: flex-start;
-  margin: 0 0 5px 0;
 }
 
 .info-window-title {
   color: hsl(261, 94%, 50%);
-  font-size: 32px;
+  font-size: 24px;
 }
 
 .info-window-body {
@@ -173,8 +171,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin: 12px 0 0 0;
-  padding: 12px 10px 0 10px;
+  margin: 8px 0 0 0;
+  padding: 10px 8px 0 8px;
 }
 
 .info-window-footer {
@@ -187,19 +185,19 @@ body {
 }
 
 .info-window-foursquare-logo {
-  margin: 12px 0 0 0;
-  width: 300px;
+  margin: 10px 0 0 0;
+  width: 100%;
 }
 
 .info-window-address {
   color: hsl(261, 14%, 42%);
-  font-size: 24px;
+  font-size: 14px;
   text-align: left;
 }
 
 .info-window-error {
   color: hsl(261, 14%, 68%);
-  font-size: 21px;
+  font-size: 14px;
   text-align: left;
 }
 
@@ -278,7 +276,7 @@ body {
   }
 
   #menu-button {
-    font-size: 60px;
+    font-size: 45px;
     top: 80px;
   }
 
@@ -312,7 +310,7 @@ body {
     }
 
     #menu-button {
-      font-size: 75px;
+      font-size: 50px;
       top: 80px;
     }
 
@@ -347,7 +345,7 @@ body {
     }
 
     #menu-button {
-      font-size: 80px;
+      font-size: 55px;
     }
 
     .opened {
@@ -385,7 +383,7 @@ body {
     }
 
     #menu-button {
-      font-size: 85px;
+      font-size: 55px;
       top: 80px;
     }
 
@@ -420,7 +418,7 @@ body {
     }
 
     #menu-button {
-      font-size: 102px;
+      font-size: 68px;
     }
 
     .opened {
@@ -457,7 +455,7 @@ body {
   }
 
   #menu-button {
-    font-size: 102px;
+    font-size: 68px;
     top: 80px;
   }
 
