@@ -1,6 +1,6 @@
-# Neighborhood Map
-
+Neighborhood Map
 ============================================
+
 
 Udacity - Full Stack Web Developer Nanodegree
 ---------------------------------------------
@@ -49,6 +49,7 @@ $ git clone https://github.com/davidsimowitz/fullstack-nanodegree-project-5.git
 ```bash
 $ fullstack-nanodegree-project-5/index.html
 ```
+
 
 Third-Party API
 ---------------
