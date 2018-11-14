@@ -6,7 +6,7 @@ Udacity - Full Stack Web Developer Nanodegree
 ---------------------------------------------
 P5: Neighborhood Map Application
 
-This project's goal is to design and implement a single-page, responsive map application—with components usable across modern desktop, tablet, and phone browsers—that allows users to view and filter through a list of pre-selected neighborhood food and dessert establishments. Once an establishment is selected, details pertaining to it—such as its address and cross street on the map—will be acquired through Foursquare® and displayed on the map.
+This project's goal is to design and implement a single-page, responsive map application—with components usable across modern desktop, tablet, and phone browsers—that allows users to view and filter a list of pre-selected neighborhood food and dessert establishments. Once an establishment is selected, details pertaining to it—such as its address and cross street on the map—will be acquired through Foursquare® and displayed on the map.
 
 
 Requirements
