@@ -85,6 +85,10 @@ const generateInfoWindowContent = function(marker, infoWindow) {
   const client_secret = "QXQA0Y3XU5XATZXHF3XBDOX15HFA0FW10N0N2KY5MHGFFWPT";
   const latlng = marker.getPosition().lat() + ',' + marker.getPosition().lng();
 
+
+// Return a new promise.
+return new Promise(function(resolve, reject) {
+
   // Foursquare API - Match Venue Request
   const foursquareRequest = new XMLHttpRequest();
   foursquareRequest.open('GET',
@@ -217,6 +221,9 @@ const generateInfoWindowContent = function(marker, infoWindow) {
       infoWindow.setContent(infoWindowContent);
   };
   foursquareRequest.send();
+
+});
+
 }
 
 /**
