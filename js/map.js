@@ -97,7 +97,7 @@ const generateInfoWindowContent = function(marker, infoWindow) {
 
   // Foursquare API - Match Venue Request
   fetch(request)
-      .then(function (response) {
+      .then(response => {
         if (response.status >= 200 && response.status < 400) {
           return response.json();
         } else {
@@ -108,7 +108,7 @@ const generateInfoWindowContent = function(marker, infoWindow) {
           });
         }
       })
-      .then(function (data) {
+      .then(data => {
         // Request succeeded.
         let infoWindowContent = '';
 
@@ -189,7 +189,7 @@ const generateInfoWindowContent = function(marker, infoWindow) {
           return infoWindowContent;
         }
       })
-      .catch(function (error) {
+      .catch(error => {
         if (error.status < 200 || error.status >= 400) {
           // Encountered server error.
           return '<section class="info-window-wrapper">' +
@@ -225,7 +225,7 @@ const generateInfoWindowContent = function(marker, infoWindow) {
                  '</section>';
         }
       })
-      .then(function (result){
+      .then(result => {
         infoWindow.setContent(result);
       });
 }
