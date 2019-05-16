@@ -85,28 +85,37 @@ const generateInfoWindowContent = function(marker, infoWindow) {
   const client_secret = "QXQA0Y3XU5XATZXHF3XBDOX15HFA0FW10N0N2KY5MHGFFWPT";
   const latlng = marker.getPosition().lat() + ',' + marker.getPosition().lng();
 
-  // Return a new promise.
-  return new Promise(function(resolve, reject) {
+  const request = new Request('https://api.foursquare.com/v2/venues/search' +
+                                  '?v=20180808&client_id=' + client_id +
+                                  '&client_secret=' + client_secret +
+                                  '&ll=' + latlng +
+                                  '&intent=match' +
+                                  '&name=' + marker.getTitle() +
+                                  '&limit=1',
+                              {method: 'GET', mode: 'cors'}
+                      );
 
-    // Foursquare API - Match Venue Request
-    const foursquareRequest = new XMLHttpRequest();
-    foursquareRequest.open('GET',
-                           'https://api.foursquare.com/v2/venues/search' +
-                               '?v=20180808&client_id=' + client_id +
-                               '&client_secret=' + client_secret +
-                               '&ll=' + latlng +
-                               '&intent=match' +
-                               '&name=' + marker.getTitle() +
-                               '&limit=1',
-                           true /* async */);
-    foursquareRequest.onload = function() {
-      // Code for handling API response.
-      if (this.status >= 200 && this.status < 400) {
+  // Foursquare API - Match Venue Request
+  fetch(request)
+      .then(function (response) {
+        if (response.status >= 200 && response.status < 400) {
+          return response.json();
+        } else {
+          // Encountered server error.
+          return Promise.reject({
+            status: response.status,
+            statusText: response.statusText,
+          });
+        }
+      })
+      .then(function (data) {
         // Request succeeded.
         let infoWindowContent = '';
+
         try {
           // Venue matched.
-          const venue = JSON.parse(this.responseText)['response']['venues'][0];
+          const venue = data.response.venues[0];
+
           infoWindowContent =
               '<section class="info-window-wrapper">' +
                 '<section class="info-window-header">' +
@@ -160,7 +169,7 @@ const generateInfoWindowContent = function(marker, infoWindow) {
                   '</section>' +
                 '</section>';
           } else {
-            // one or more venue field(s) not found.
+            // One or more venue field(s) not found.
             infoWindowContent =
                 '<section class="info-window-wrapper">' +
                   '<section class="info-window-body">' +
@@ -179,50 +188,47 @@ const generateInfoWindowContent = function(marker, infoWindow) {
         finally {
           infoWindow.setContent(infoWindowContent);
         }
-      } else {
-        // Encountered server error.
-        const infoWindowContent =
-            '<section class="info-window-wrapper">' +
-              '<section class="info-window-header">' +
-                '<h3 class="info-window-title">' + marker.getTitle() + '</h3>' +
-              '</section>' +
-              '<section class="info-window-body">' +
-                '<h4 class="info-window-error">' +
-                  'our apologies, Foursquare® is currently unavailable</h4>' +
-              '</section>' +
-              '<section class="info-window-footer">' +
-                '<img class="info-window-foursquare-logo" ' +
-                    'src="img/Powered-by-Foursquare-one-color-300.png" ' +
-                    'alt="Powered by Foursquare">' +
-              '</section>' +
-            '</section>';
-        infoWindow.setContent(infoWindowContent);
-      }
-    };
-    foursquareRequest.onerror = function() {
-      // XMLHttpRequest transaction failed.
-      const infoWindowContent =
-            '<section class="info-window-wrapper">' +
-              '<section class="info-window-header">' +
-                '<h3 class="info-window-title">' + marker.getTitle() + '</h3>' +
-              '</section>' +
-              '<section class="info-window-body">' +
-                '<h4 class="info-window-error">' +
-                  'sorry for the inconvenience, ' +
-                  'this feature is currently unavailable</h4>' +
-              '</section>' +
-              '<section class="info-window-footer">' +
-                '<img class="info-window-foursquare-logo" ' +
-                    'src="img/Powered-by-Foursquare-one-color-300.png" ' +
-                    'alt="Powered by Foursquare">' +
-              '</section>' +
-            '</section>';
-        infoWindow.setContent(infoWindowContent);
-    };
-    foursquareRequest.send();
-
-  });
-
+      })
+      .catch(function (error) {
+        if (error.status < 200 || error.status >= 400) {
+          // Encountered server error.
+          const infoWindowContent =
+              '<section class="info-window-wrapper">' +
+                '<section class="info-window-header">' +
+                  '<h3 class="info-window-title">' + marker.getTitle() + '</h3>' +
+                '</section>' +
+                '<section class="info-window-body">' +
+                  '<h4 class="info-window-error">' +
+                    'our apologies, Foursquare® is currently unavailable</h4>' +
+                '</section>' +
+                '<section class="info-window-footer">' +
+                  '<img class="info-window-foursquare-logo" ' +
+                      'src="img/Powered-by-Foursquare-one-color-300.png" ' +
+                      'alt="Powered by Foursquare">' +
+                '</section>' +
+              '</section>';
+          infoWindow.setContent(infoWindowContent);
+        } else {
+          // Fetch transaction failed.
+          const infoWindowContent =
+                '<section class="info-window-wrapper">' +
+                  '<section class="info-window-header">' +
+                    '<h3 class="info-window-title">' + marker.getTitle() + '</h3>' +
+                  '</section>' +
+                  '<section class="info-window-body">' +
+                    '<h4 class="info-window-error">' +
+                      'sorry for the inconvenience, ' +
+                      'this feature is currently unavailable</h4>' +
+                  '</section>' +
+                  '<section class="info-window-footer">' +
+                    '<img class="info-window-foursquare-logo" ' +
+                        'src="img/Powered-by-Foursquare-one-color-300.png" ' +
+                        'alt="Powered by Foursquare">' +
+                  '</section>' +
+                '</section>';
+            infoWindow.setContent(infoWindowContent);
+        }
+      });
 }
 
 /**
