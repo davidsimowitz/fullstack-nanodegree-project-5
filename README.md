@@ -1,22 +1,48 @@
-Neighborhood Map
-============================================
+Neighborhood Map Application
+============================
+
 
 
 Udacity - Full Stack Web Developer Nanodegree
 ---------------------------------------------
-P5: Neighborhood Map Application
+The Frontend: JavaScript & AJAX Project
 
+
+Objective
+---------
 This project's goal was to design and implement a single-page, responsive map application—with components usable across modern desktop, tablet, and phone browsers—that allows users to view and filter a list of pre-selected neighborhood food and dessert establishments. Once an establishment is selected, details pertaining to it—such as its address and cross street on the map—are acquired through Foursquare® and displayed on the map.
 
 
+
+Third-Party API
+===============
+
+
++ This application uses the Foursquare® application programming interface but is not endorsed or certified by Foursquare Labs, Inc. All of the Foursquare® logos (including all badges) and trademarks displayed on this application are the property of Foursquare Labs, Inc.
+
++ This application uses a Sandbox Account. In other words, this application has a hourly/daily/monthly rate limit to the Foursquare® API endpoints. After the limit if reached the application will receive a 'quota_exceeded' error until the limit is reset.
+
+
+
+Application  URL
+================
+
++ Access the web application using your [smartphone, tablet, or computer](http://www.davidsimowitz.com/neighborhood-map/index.html).
+  * `http://www.davidsimowitz.com/neighborhood-map/index.html`
+
+
+
 Requirements
-------------
+============
+
 
 + A Web Browser such as [Chrome](https://www.google.com/chrome/browser/) or [Firefox](https://www.mozilla.org/en-US/firefox/new/) is installed.
 
 
+
 Usage
------
+=====
+
 
 ```bash
 $ git clone https://github.com/davidsimowitz/fullstack-nanodegree-project-5.git
@@ -49,10 +75,3 @@ $ git clone https://github.com/davidsimowitz/fullstack-nanodegree-project-5.git
 ```bash
 $ fullstack-nanodegree-project-5/index.html
 ```
-
-
-Third-Party API
----------------
-+ This application uses the Foursquare® application programming interface but is not endorsed or certified by Foursquare Labs, Inc. All of the Foursquare® logos (including all badges) and trademarks displayed on this application are the property of Foursquare Labs, Inc.
-
-+ This application uses a Sandbox Account. In other words, this application has a hourly/daily/monthly rate limit to the Foursquare® API endpoints. After the limit if reached the application will receive a 'quota_exceeded' error until the limit is reset.
